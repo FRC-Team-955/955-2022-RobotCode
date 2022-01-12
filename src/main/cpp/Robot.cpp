@@ -5,7 +5,10 @@
 #include "Robot.h"
 #include "ctre/Phoenix.h"
 #include <frc/Joystick.h>
-//test
+#include "drivebase.h"
+
+DriveBase *drivebase;
+
 void Robot::RobotInit() {}
 void Robot::RobotPeriodic() {}
 
@@ -14,7 +17,8 @@ void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
-
+  drivebase = new DriveBase();
+  drivebase->Drive();
 }
 
 void Robot::DisabledInit() {}
