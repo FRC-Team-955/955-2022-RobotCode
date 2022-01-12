@@ -9,7 +9,7 @@ using namespace rev;
 
 class DriveBase {
 	public:
-    
+
  	    DriveBase() {};
         void Drive();
 	private:
