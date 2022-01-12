@@ -5,15 +5,30 @@
 #include "Robot.h"
 #include "ctre/Phoenix.h"
 #include <frc/Joystick.h>
-//test
+#include "drivebase.h"
+//#include "frc/CameraServer.h" //Untested Cam Code
+
+using namespace frc;
+
+DriveBase *drivebase;
+//CameraServer *cam; //Untested Cam Code
+
 void Robot::RobotInit() {}
 void Robot::RobotPeriodic() {}
 
 void Robot::AutonomousInit() {}
 void Robot::AutonomousPeriodic() {}
 
-void Robot::TeleopInit() {}
-void Robot::TeleopPeriodic() {
+void Robot::TeleopInit() 
+{
+  
+  drivebase = new DriveBase();
+
+}
+void Robot::TeleopPeriodic()
+{
+
+  drivebase->Drive();
 
 }
 
