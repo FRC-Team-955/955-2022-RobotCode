@@ -5,7 +5,18 @@
 #include "Robot.h"
 #include "ctre/Phoenix.h"
 #include <frc/Joystick.h>
+<<<<<<< Updated upstream
 //test
+=======
+#include "drivebase.h"
+//#include "frc/CameraServer.h" //Untested Cam Code
+//
+using namespace frc;
+
+DriveBase *drivebase;
+//CameraServer *cam; //Untested Cam Code
+
+>>>>>>> Stashed changes
 void Robot::RobotInit() {}
 void Robot::RobotPeriodic() {}
 
