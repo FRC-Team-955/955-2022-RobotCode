@@ -3,20 +3,15 @@
 
 #include <frc/DigitalInput.h>
 
-
-
-int pin = 0;
+#include "settings.h"
 
 class BeamBreak {
 		public:
  		BeamBreak(){
-            digitalinput = new frc::DigitalInput(pin);
-             
-         }
-			bool BeamBroken();
+            digitalinput = new frc::DigitalInput(SensorConst::kbreak_beam_port);
+        }
+		bool BeamBroken();
 			
-			
-
 	    private:
 		    frc::DigitalInput * digitalinput;
             bool broken;
