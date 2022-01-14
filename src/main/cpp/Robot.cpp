@@ -21,11 +21,11 @@ void Robot::AutonomousInit() {}
 void Robot::AutonomousPeriodic() {}
 void Robot::TeleopInit() {
   joystick = new Joystick(0);
-
   drivebase = new DriveBase();
   color_sensor = new ColorSensor();
 }
-void Robot::TeleopPeriodic(){
+void Robot::TeleopPeriodic() 
+{
   drivebase->Drive();
 }
 void Robot::DisabledInit() {}
