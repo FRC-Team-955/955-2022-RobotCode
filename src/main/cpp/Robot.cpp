@@ -1,7 +1,6 @@
 #include "Robot.h"
 #include "ctre/Phoenix.h"
 #include <cameraserver/CameraServer.h>
-#include <frc/smartdashboard/smartdashboard.h>
 
 #include "drivebase.h"
 #include "colorsensor.h"
