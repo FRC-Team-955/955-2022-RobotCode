@@ -10,22 +10,25 @@
 using namespace rev;
 
 class DriveBase {
-	public:
+public:
+  DriveBase() {
+    m_rightFollowMotor.Follow(m_rightLeadMotor);
+    m_leftFollowMotor.Follow(m_leftLeadMotor);
+  };
+  void Drive();
 
- 	    DriveBase() {
-        m_rightFollowMotor.Follow(m_rightLeadMotor);
-        m_leftFollowMotor.Follow(m_leftLeadMotor);
-       };
-      void Drive();
-	private:
-	
-		CANSparkMax m_leftLeadMotor{DriveConst::kleft_lead_neo_number, CANSparkMax::MotorType::kBrushless};
-    CANSparkMax m_rightLeadMotor{DriveConst::kright_lead_neo_number, CANSparkMax::MotorType::kBrushless};
-    CANSparkMax m_leftFollowMotor{DriveConst::kleft_follow_neo_number, CANSparkMax::MotorType::kBrushless};
-    CANSparkMax m_rightFollowMotor{DriveConst::kright_follow_neo_number, CANSparkMax::MotorType::kBrushless};
+private:
+  CANSparkMax m_leftLeadMotor{DriveConst::kleft_lead_neo_number,
+                              CANSparkMax::MotorType::kBrushless};
+  CANSparkMax m_rightLeadMotor{DriveConst::kright_lead_neo_number,
+                               CANSparkMax::MotorType::kBrushless};
+  CANSparkMax m_leftFollowMotor{DriveConst::kleft_follow_neo_number,
+                                CANSparkMax::MotorType::kBrushless};
+  CANSparkMax m_rightFollowMotor{DriveConst::kright_follow_neo_number,
+                                 CANSparkMax::MotorType::kBrushless};
 
-    frc::DifferentialDrive m_robotDrive{m_leftLeadMotor, m_rightLeadMotor};
+  frc::DifferentialDrive m_robotDrive{m_leftLeadMotor, m_rightLeadMotor};
 
-    frc::Joystick joystick{0};
+  frc::Joystick joystick{0};
 };
 #endif

@@ -6,16 +6,14 @@
 #include "settings.h"
 
 class BeamBreak {
-		public:
- 		BeamBreak(){
-            digitalinput = new frc::DigitalInput(SensorConst::kbreak_beam_port);
-        }
-		bool BeamBroken();
-			
-	    private:
-		    frc::DigitalInput * digitalinput;
-            bool broken;
+public:
+  BeamBreak() {
+    digitalinput = new frc::DigitalInput(SensorConst::kbreak_beam_port);
+  }
+  bool BeamBroken();
 
-
+private:
+  frc::DigitalInput *digitalinput;
+  bool broken;
 };
 #endif

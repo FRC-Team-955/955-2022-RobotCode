@@ -1,10 +1,7 @@
 #include "breakbeam.h"
 
-    
+bool BeamBreak::BeamBroken() {
+  broken = digitalinput->Get();
 
-bool BeamBreak::BeamBroken(){
-	broken = digitalinput->Get();
-	
-return broken;
-    
+  return broken;
 }
