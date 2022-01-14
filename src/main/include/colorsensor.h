@@ -1,0 +1,40 @@
+#ifndef COLORSENSOR
+#define COLORSENSOR
+
+#include <iostream>
+#include <frc/util/color.h>
+#include "rev/ColorSensorV3.h"
+#include "rev/ColorMatch.h"
+
+using namespace rev;
+using namespace frc;
+
+class ColorSensor{
+    public:
+        ColorSensor(){
+            rev_color_sensor = new ColorSensorV3(frc::I2C::Port::kOnboard);
+            color_match = new ColorMatch();
+
+            //Adds the target colors to colorToMatch 
+            color_match->AddColorMatch(blue_target);
+            color_match->AddColorMatch(green_target);
+            color_match->AddColorMatch(red_target);
+            color_match->AddColorMatch(yellow_target);
+        }
+        std::string ClosestColor();
+        frc::Color GetColor();
+
+    private:
+        ColorSensorV3 * rev_color_sensor;
+        ColorMatch * color_match;
+        //The values for the target colors
+        static constexpr frc::Color blue_target = frc::Color(0.143, 0.427, 0.429);
+        static constexpr frc::Color green_target = frc::Color(0.197, 0.561, 0.240);
+        static constexpr frc::Color red_target = frc::Color(0.561, 0.232, 0.114);
+        static constexpr frc::Color yellow_target = frc::Color(0.361, 0.524, 0.113);
+
+        frc::Color nearest_color;
+        double confidence = 1.0;
+};
+
+#endif
