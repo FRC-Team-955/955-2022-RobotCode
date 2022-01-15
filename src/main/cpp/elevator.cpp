@@ -3,15 +3,13 @@ using namespace frc;
 using namespace std;
 void Elevator::elevator_run()
 {
-
-
 if(limit_switch_top.Get() == 1 && joy0.GetRawAxis(0) > 0)
     {
-    hopper_motor.Set(ControlMode::PercentOutput, joy0.GetRawAxis(0) - joy0.GetRawAxis(0));
+    hopper_motor.Set(ControlMode::PercentOutput, 0);
     }
 else if(limit_switch_bottom.Get() == 1 && joy0.GetRawAxis(0) < 0)
     {
-    hopper_motor.Set(ControlMode::PercentOutput, joy0.GetRawAxis(0) + joy0.GetRawAxis(0));
+    hopper_motor.Set(ControlMode::PercentOutput, 0);
     }
 else
     {
