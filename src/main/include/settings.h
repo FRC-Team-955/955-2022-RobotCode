@@ -4,6 +4,7 @@ namespace Joy0Const {
 constexpr int kquick_turn_button = 1;
 constexpr int kdrive_speed_axis = 1;
 constexpr int kdrive_curvature_axis = 1;
+constexpr int kreverse_drive = 4;
 } // namespace Joy0Const
 
 namespace Joy1Const {}

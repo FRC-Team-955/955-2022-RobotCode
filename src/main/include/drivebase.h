@@ -4,6 +4,7 @@
 #include "rev/CANSparkMax.h"
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
+#include <frc/filter/Debouncer.h>
 
 #include "settings.h"
 
@@ -30,5 +31,7 @@ private:
   frc::DifferentialDrive m_robotDrive{m_leftLeadMotor, m_rightLeadMotor};
 
   frc::Joystick joystick{0};
+
+  bool ReverseDrive = false;
 };
 #endif
