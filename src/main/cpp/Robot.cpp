@@ -7,10 +7,12 @@
 #include "drivebase.h"
 #include <cameraserver/CameraServer.h>
 #include <frc/Joystick.h>
+#include "elevator.h"
 
 using namespace frc;
 
 DriveBase *drivebase;
+Elevator *elevator;
 
 void Robot::RobotInit() {}
 void Robot::RobotPeriodic() {}
@@ -20,9 +22,13 @@ void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {
   drivebase = new DriveBase();
+  elevator = new Elevator();
   frc::CameraServer::GetInstance()->StartAutomaticCapture();
 }
-void Robot::TeleopPeriodic() { drivebase->Drive(); }
+void Robot::TeleopPeriodic() { 
+  drivebase->Drive();
+  elevator -> elevator_run();
+   }
 
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
