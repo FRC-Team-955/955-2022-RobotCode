@@ -13,7 +13,9 @@ public:
   Elevator() {
     
   }
-  void elevator_run(); //joystick moves elevator
+  int ElevatorMove();
+  void LockElevator();
+  void UnlockElevator();
 
 
 private:

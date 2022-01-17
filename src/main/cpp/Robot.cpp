@@ -27,7 +27,9 @@ void Robot::TeleopInit() {
 }
 void Robot::TeleopPeriodic() { 
   drivebase->Drive();
-  elevator -> elevator_run();
+  elevator -> ElevatorMove();
+  elevator -> LockElevator();
+  elevator -> UnlockElevator();
    }
 
 void Robot::DisabledInit() {}
