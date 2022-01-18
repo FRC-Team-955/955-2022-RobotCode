@@ -12,7 +12,6 @@
 using namespace frc;
 
 DriveBase *drivebase;
-Elevator *elevator;
 
 void Robot::RobotInit() {}
 void Robot::RobotPeriodic() {}
@@ -22,14 +21,10 @@ void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {
   drivebase = new DriveBase();
-  elevator = new Elevator();
   frc::CameraServer::GetInstance()->StartAutomaticCapture();
 }
 void Robot::TeleopPeriodic() { 
   drivebase->Drive();
-  elevator -> ElevatorMove();
-  elevator -> LockElevator();
-  elevator -> UnlockElevator();
    }
 
 void Robot::DisabledInit() {}
