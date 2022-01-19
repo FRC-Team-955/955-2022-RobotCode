@@ -4,7 +4,6 @@
 #include "rev/CANSparkMax.h"
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
-#include <frc/filter/Debouncer.h>
 
 #include "settings.h"
 
