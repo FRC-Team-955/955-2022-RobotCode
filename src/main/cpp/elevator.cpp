@@ -8,15 +8,15 @@ if(solenoid0.Get() == 1)
 }
 if(limit_switch_top.Get() == 1 && joystick_position > 0)
     {
-    hopper_motor.Set(ControlMode::PercentOutput, 0);
+    elevator_motor.Set(ControlMode::PercentOutput, 0);
     }
 else if(limit_switch_bottom.Get() == 1 && joystick_position < 0)
     {
-    hopper_motor.Set(ControlMode::PercentOutput, 0);
+    elevator_motor.Set(ControlMode::PercentOutput, 0);
     }
 else
     {
-    hopper_motor.Set(ControlMode::PercentOutput, joystick_position);
+    elevator_motor.Set(ControlMode::PercentOutput, joystick_position);
     }
 return 0;
 }

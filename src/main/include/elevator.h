@@ -9,18 +9,16 @@ using namespace frc;
 
 class Elevator {
 public:
-  Elevator() {
-    
-  }
+  Elevator() {}
   int ElevatorMove(int joystick_position);
   void LockElevator();
   void UnlockElevator();
 
 
 private:
-  DigitalInput limit_switch_top{1};
-  DigitalInput limit_switch_bottom{2};
-  TalonFX hopper_motor{7};
+  DigitalInput limit_switch_top{SensorConst::limit_switch_top_port};
+  DigitalInput limit_switch_bottom{SensorConst::limit_switch_bottom_port};
+  TalonFX elevator_motor{MechanismConst::kelevator_motor_port};
   Solenoid solenoid0{PneumaticsModuleType::CTREPCM , 0};
   
 };
