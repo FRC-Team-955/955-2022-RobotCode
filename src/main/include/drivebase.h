@@ -30,5 +30,7 @@ private:
   frc::DifferentialDrive m_robotDrive{m_leftLeadMotor, m_rightLeadMotor};
 
   frc::Joystick joystick{0};
+
+  bool ReverseDrive = false;
 };
 #endif
