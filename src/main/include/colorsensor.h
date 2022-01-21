@@ -26,7 +26,6 @@ class ColorSensor{
         std::string ClosestColor();
         frc::Color GetColor();
 
-        
         bool CheckForBall();
 
     private:
