@@ -17,7 +17,6 @@ class Shooter {
     private:
     TalonSRX shootertalon_lead {1};
     TalonSRX shootertalon_follow {2};
-
 };
 
 #endif
