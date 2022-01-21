@@ -7,16 +7,15 @@ using namespace std;
 using namespace frc;
 
 class Shooter {
-    Shooter(){shootertalon_follow.SetInverted(1);}
+    Shooter(){}
     public:
-    float ShootAtVelocity(int Velocity);
-    void ShootPercentOutput(int Percent);
-    float IndependentControl(int VelocityLead, int VelocityFollow);
+    float ShootAtVelocity(int velocity);
+    void ShootPercentOutput(int percent);
 
 
     private:
     TalonSRX shootertalon_lead {1};
-    TalonSRX shootertalon_follow {2};
+
 };
 
 #endif
