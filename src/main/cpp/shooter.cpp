@@ -4,5 +4,7 @@ using namespace frc;
 
 void Shooter::ShootAtVelocity(int V)
 {
-Motor.Set(ControlMode::Velocity, V);
+shootertalon_lead.Set(ControlMode::Velocity, V);
+shootertalon_follow.Follow(shootertalon_lead);
+
 }

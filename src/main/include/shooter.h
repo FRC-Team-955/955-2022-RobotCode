@@ -8,11 +8,14 @@ using namespace frc;
 
 class Shooter
 {
+
 public: 
+Shooter(){shootertalon_follow.SetInverted(1);}
 void ShootAtVelocity(int V);
 
 
 private: 
-TalonSRX Motor {1}; 
+TalonSRX shootertalon_lead {1}; 
+TalonSRX shootertalon_follow {2}; 
 };
 #endif
