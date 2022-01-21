@@ -6,6 +6,8 @@
 #include "rev/ColorSensorV3.h"
 #include "rev/ColorMatch.h"
 
+#include "settings.h"
+
 using namespace rev;
 using namespace frc;
 
@@ -23,6 +25,9 @@ class ColorSensor{
         }
         std::string ClosestColor();
         frc::Color GetColor();
+
+        
+        bool CheckForBall();
 
     private:
         ColorSensorV3 * rev_color_sensor;

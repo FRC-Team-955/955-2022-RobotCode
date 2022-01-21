@@ -10,6 +10,9 @@ namespace Joy1Const {}
 
 namespace SensorConst {
 constexpr int kbreak_beam_port = 0;
+
+//value at which color sensor proximity will return there is a ball 0(far away) - 2047(close as possible)
+constexpr int kvalue_for_ball = 2000;
 }
 
 namespace DriveConst {
