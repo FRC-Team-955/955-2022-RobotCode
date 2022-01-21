@@ -12,6 +12,7 @@ class DriveBase {
 
  	    DriveBase() {};
         void Drive();
+        void DriveTank(float leftWheelInput, float rightWheelInput);
 	private:
 	
 		rev::CANSparkMax m_leftLeadMotor{3, rev::CANSparkMax::MotorType::kBrushless};
