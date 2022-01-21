@@ -16,13 +16,13 @@ class XYalign{
             TalonSRX *talon_drive_right_noenc,
             TalonSRX *talon_drive_left_enc,
             TalonSRX *talon_drive_left_noenc, 
-            frc::Joystick * joy0,
+            frc::Joystick * joystick,
             AHRS*ahrs): 
             talon_drive_right_enc(talon_drive_right_enc),
             talon_drive_right_noenc(talon_drive_right_noenc),
             talon_drive_left_enc(talon_drive_left_enc),
             talon_drive_left_noenc(talon_drive_left_noenc), 
-            joy0(joy0),
+            joystick(joystick),
             ahrs(ahrs){};
             double left_drive;
             double right_drive;
@@ -33,7 +33,7 @@ class XYalign{
         TalonSRX *talon_drive_right_noenc;
         TalonSRX *talon_drive_left_enc;
         TalonSRX *talon_drive_left_noenc;
-        Joystick *joy0;
+        Joystick *joystick;
         AHRS *ahrs; 
         double degree;
         double vertical_offset;
