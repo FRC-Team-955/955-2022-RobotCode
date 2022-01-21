@@ -10,7 +10,7 @@ using namespace frc;
 class Elevator {
 public:
   Elevator() {}
-  int ElevatorMove(int joystick_position);
+  void ElevatorMove(int joystick_position);
   void LockElevator();
   void UnlockElevator();
 
@@ -20,6 +20,5 @@ private:
   DigitalInput limit_switch_bottom{SensorConst::limit_switch_bottom_port};
   TalonFX elevator_motor{MechanismConst::kelevator_motor_port};
   Solenoid solenoid0{PneumaticsModuleType::CTREPCM , 0};
-  
 };
 #endif
