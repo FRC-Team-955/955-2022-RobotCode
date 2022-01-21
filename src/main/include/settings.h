@@ -20,7 +20,10 @@ constexpr int kright_follow_neo_number = 5;
 } // namespace DriveConst
 
 namespace MechanismConst {
-    constexpr int khopper_motor_number = 1;
+    constexpr int khopper_motor_number1 = 1;
+    constexpr int khopper_motor_number2 = 2;
+    constexpr int khopper_motor_number3 = 3;
+    constexpr int kvelocity_range = 1;
 }
 
 namespace AutoConst {}
