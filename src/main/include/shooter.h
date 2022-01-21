@@ -3,7 +3,6 @@
 #include <iostream>
 #include "frc/Joystick.h"
 #include "ctre/Phoenix.h"
-using namespace std;
 using namespace frc;
 
 class Shooter {
