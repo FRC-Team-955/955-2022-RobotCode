@@ -15,6 +15,5 @@ void BallManager::ShootBalls(){
     //ShootAtVelocity() = set_velocity;
     if (set_velocity > set_velocity - MechanismConst::kvelocity_range && set_velocity <  set_velocity + MechanismConst::kvelocity_range){
         shooter_motor.Set(ControlMode::Velocity, set_velocity);
-        hopper_motor.Set(ControlMode::PercentOutput, hopper_motor_percent1);
     }
 }

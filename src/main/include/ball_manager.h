@@ -13,12 +13,12 @@ class BallManager{
         int GetBallColor(); // put 0 or 1 and return color
         void ShootBalls(); // input voloceity for the shooter, push the ball into the shooter
         float set_velocity;
-        // pass vel into thais funciton, then get vel and if vel is in the range, then shoot one ball, then put the other ball into second position and wait for velocity to rise again.
 
     private:
-        TalonSRX hopper_motor {1};
-        TalonSRX shooter_motor {1};
         BeamBreak hopper_break_beam;
+        Hopper hopper_0;
+        Hopper hopper_1;
+        Hopper hopper_NULL = NULL;
 };
 
 #endif
