@@ -26,9 +26,10 @@ if(joy1.GetRawButton(4) == true){
     time1.Start();
     if(time1.HasElapsed(units::second_t (2)) == true){
         t2.Set(ControlMode::PercentOutput, 0);
+        time1.Reset();
     }
 }
-    time1.Reset();
+
 }
 
 
