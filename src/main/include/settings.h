@@ -22,4 +22,7 @@ constexpr int kright_follow_neo_number = 5;
 
 namespace MechanismConst {}
 
-namespace AutoConst {}
+namespace AutoConst {
+constexpr auto ktrack_width_meters = 1_m;
+
+}
