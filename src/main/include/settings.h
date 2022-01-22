@@ -10,6 +10,7 @@ namespace Joy1Const {}
 
 namespace SensorConst {
 constexpr int kbreak_beam_port = 0;
+constexpr int kvalue_for_ball = 2000;
 }
 
 namespace DriveConst {
