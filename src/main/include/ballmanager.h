@@ -10,18 +10,22 @@ using namespace frc;
 #include "hopper.h"
 #include "breakbeam.h"
 #include "colorsensor.h"
+#include "hopper.h"
 
 class BallManager {
 public:
   BallManager() {}
-  int GetBallColor();
-  void ShootBalls();
+  std::string GetHopperState(int position);
+  void Shoot();
+  bool MoveIndex(int start, int end);
   
 
 
 private:
-  DigitalInput limit_switch_top{SensorConst::limit_switch_top_port};
-  DigitalInput limit_switch_bottom{SensorConst::limit_switch_bottom_port};
+  std::string ball[2];//ball[0] = color of position 1 ball[1] = color of position 2
+  ball[0] = "NULL";
+  ball[1] = "NULL";
+  
   TalonSRX hopper_motor{1};
   Solenoid solenoid0{PneumaticsModuleType::CTREPCM , 0};
 };
