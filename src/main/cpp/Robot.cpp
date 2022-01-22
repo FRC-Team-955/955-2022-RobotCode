@@ -12,7 +12,8 @@ using namespace frc;
 
 DriveBase *drivebase;
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+}
 void Robot::RobotPeriodic() {}
 
 void Robot::AutonomousInit() {}
