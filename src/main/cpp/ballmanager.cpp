@@ -7,10 +7,14 @@ if(CheckForBall())
     {
     ball[0] = ClosestColor();
     }
-if(CheckForBall() && !BeamBroken())
+if(!BeamBroken() && ball[0] != "NULL" && !CheckForBall())
     {
-    ball[1] = ball[0];
+    inbetween = ball[0];
     ball[0] = "NULL"
+    }
+if(BeamBroken())
+    {
+    ball[1] = inbetween;
     }
 
 if(position == 1())

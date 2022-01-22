@@ -25,6 +25,7 @@ private:
   std::string ball[2];//ball[0] = color of position 1 ball[1] = color of position 2
   ball[0] = "NULL";
   ball[1] = "NULL";
+  std::string inbetween;
   
   TalonSRX hopper_motor{1};
   Solenoid solenoid0{PneumaticsModuleType::CTREPCM , 0};
