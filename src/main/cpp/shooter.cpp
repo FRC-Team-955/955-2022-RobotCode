@@ -1,14 +1,11 @@
 #include "shooter.h"
-using namespace frc; 
+using namespace frc;
 
 float Shooter::ShootAtVelocity(int velocity) {
-    shootertalon_lead.Set(ControlMode::Velocity, velocity);
-
-    return shootertalon_lead.GetSelectedSensorVelocity(0);
+  shooter_talon.Set(ControlMode::Velocity, velocity);
+  return shooter_talon.GetSelectedSensorVelocity(0);
 }
 
-void Shooter::ShootPercentOutput(int percent){
-    shootertalon_lead.Set(ControlMode::PercentOutput, percent);
+void Shooter::ShootPercentOutput(int percent) {
+  shooter_talon.Set(ControlMode::PercentOutput, percent);
 }
-
-

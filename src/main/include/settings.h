@@ -19,6 +19,8 @@ constexpr int kleft_follow_neo_number = 2;
 constexpr int kright_follow_neo_number = 5;
 } // namespace DriveConst
 
-namespace MechanismConst {}
-constexpr int shootertalon_follow = 1; 
+namespace MechanismConst {
+constexpr int shooter_talon = 8;
+}
+
 namespace AutoConst {}
