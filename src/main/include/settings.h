@@ -23,6 +23,7 @@ constexpr int kright_follow_neo_number = 5;
 
 namespace MechanismConst {
 constexpr int kelevator_motor_port = 6;
+constexpr int kelevator_pnumatic_port = 0;
 }
 
 namespace AutoConst {}
