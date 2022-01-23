@@ -11,7 +11,8 @@ namespace Joy1Const {}
 
 namespace SensorConst {
 constexpr int kbreak_beam_port = 0;
-
+constexpr int limit_switch_top_port = 1;
+constexpr int limit_switch_bottom_port = 2;
 // value at which color sensor proximity will return there is a ball 0(far away)
 // - 2047(close as possible)
 constexpr int kvalue_for_ball = 2000;
@@ -24,6 +25,9 @@ constexpr int kleft_follow_neo_number = 2;
 constexpr int kright_follow_neo_number = 5;
 } // namespace DriveConst
 
-namespace MechanismConst {}
+namespace MechanismConst {
+constexpr int kelevator_motor_port = 6;
+constexpr int kelevator_pnumatic_port = 0;
+}
 
 namespace AutoConst {}
