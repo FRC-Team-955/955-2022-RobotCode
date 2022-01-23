@@ -1,6 +1,6 @@
 #include "hopper.h"
 
-void Hopper::Run_Hopper_Motor(int hopper_motor_percent1, int hopper_motor_percent2){
-    talon_hopper1.Set(ControlMode::PercentOutput, hopper_motor_percent1);
-    talon_hopper2.Set(ControlMode::PercentOutput, hopper_motor_percent2);
+void Hopper::RunHopperMotor(int hopper_motor_top_percent, int hopper_motor_bottom_percent) {
+  talon_hopper_top.Set(ControlMode::PercentOutput, hopper_motor_top_percent * max_percent);
+  talon_hopper_bottom.Set(ControlMode::PercentOutput, hopper_motor_bottom_percent * max_percent);
 }
