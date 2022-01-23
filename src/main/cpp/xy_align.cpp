@@ -13,15 +13,15 @@ void XYalign::test()
 
   float min_command = 0.05f;
 
-  auto table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-  float tx = table->GetNumber("tx", 0.0);
-  float ty = table->GetNumber("ty", 0.0);
+  auto table = nt::NetworkTableInstance::GetDefault().GetTable("photonvision");
+  float targetYaw = table->GetNumber("targetYaw", 0.0);
+  float targetPitch = table->GetNumber("targetPitch", 0.0);
 
 
   if (joystick.GetRawButton(9))
   {
-    float heading_error = -tx;
-    float distance_error = -ty;
+    float heading_error =  180 - targetYaw;
+    float distance_error = 120 - targetPitch;
 
     float steering_adjust = 0.0f;
     /*if (tx > 1.0)
