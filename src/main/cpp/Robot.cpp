@@ -7,8 +7,9 @@
 #include "ctre/Phoenix.h"
 #include <cameraserver/CameraServer.h>
 
-#include "drivebase.h"
 #include "colorsensor.h"
+#include "drivebase.h"
+
 
 using namespace frc;
 
