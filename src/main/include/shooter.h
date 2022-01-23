@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ctre/Phoenix.h"
 #include "frc/Joystick.h"
+#include "settings.h"
 
 using namespace frc;
 
@@ -15,7 +16,7 @@ public:
   void ShootPercentOutput(int percent);
 
 private:
-  TalonSRX shooter_talon{1};
+  TalonSRX shooter_talon{MechanismConst::kshooter_talon_port};
 };
 
 #endif

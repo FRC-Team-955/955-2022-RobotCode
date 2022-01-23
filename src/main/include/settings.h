@@ -26,13 +26,11 @@ constexpr int kright_follow_neo_number = 5;
 } // namespace DriveConst
 
 namespace MechanismConst {
-constexpr int khopper_motor_number1 = 1;
-constexpr int khopper_motor_number2 = 2;
-constexpr int khopper_motor_number3 = 3;
-constexpr int kvelocity_range = 1;
+constexpr int khopper_motor_top_port = 1;
+constexpr int khopper_motor_bottom_port = 2;
 constexpr int kelevator_motor_port = 6;
 constexpr int kelevator_pnumatic_port = 0;
-constexpr int shooter_talon = 8;
+constexpr int kshooter_talon_port = 8;
 }
 
 namespace AutoConst {}
