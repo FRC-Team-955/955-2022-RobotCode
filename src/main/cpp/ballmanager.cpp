@@ -1,31 +1,9 @@
 #include "ballmanager.h"
 using namespace frc;
 
-std::string BallManager::GetHopperState(int position)
+std::string BallManager::GetHopperState(int slot)
 {
-if(CheckForBall())
-    {
-    ball[0] = ClosestColor();
-    }
-if(!BeamBroken() && ball[0] != "NULL" && !CheckForBall())
-    {
-    inbetween = ball[0];
-    ball[0] = "NULL"
-    }
-if(BeamBroken())
-    {
-    ball[1] = inbetween;
-    }
-
-if(position == 1())
-    {
-    return ball[0];
-    }   
-else if(position == 2 && BeamBroken())
-    {
-    return ball[1]
-    }
-
+    return position[slot - 1];
 }
 
 
@@ -37,4 +15,14 @@ void BallManager::Shoot()
 bool BallManager::MoveIndex(int start, int end)
 {
 
+}
+
+void BallManager::LoadHopper()
+{
+
+}
+
+bool BallManager::IsEmpty()
+{
+    if(position[1] == "NULL" && position[0] == "NULL")
 }

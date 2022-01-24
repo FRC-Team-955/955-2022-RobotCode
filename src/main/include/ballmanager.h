@@ -22,9 +22,9 @@ public:
 
 
 private:
-  std::string ball[2];//ball[0] = color of position 1 ball[1] = color of position 2
-  ball[0] = "NULL";
-  ball[1] = "NULL";
+  std::string position[2];//position[0] = color of position 1 position[1] = color of position 2
+  position[0] = "NULL";
+  position[1] = "NULL";
   std::string inbetween;
   
   TalonSRX hopper_motor{1};
