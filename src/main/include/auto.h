@@ -9,9 +9,12 @@
 #include <frc/controller/SimpleMotorFeedforward.h>
 #include <frc/controller/PIDController.h>
 
+#include <frc/trajectory/Trajectory.h>
 #include <frc/trajectory/TrajectoryConfig.h>
+#include <frc/trajectory/TrajectoryGenerator.h>
 
 #include <frc2/command/RamseteCommand.h>
+#include <frc/controller/RamseteController.h>
 
 #include <frc/geometry/Pose2d.h>
 
@@ -35,15 +38,19 @@ public:
         m_leftLeadMotor.SetInverted(false);
         m_rightLeadMotor.SetInverted(true);
         config.SetKinematics(kinematics);
-
     };
 
     frc::Rotation2d GetHeading();
     frc::DifferentialDriveWheelSpeeds GetSpeeds();
-    void UpdateOdometry();
+    frc::Pose2d UpdateOdometry();
+    void GenerateTrajectory();
+    void SetOutput(double leftVolts,double rightVolts);
     
 
 private:
+    // double leftVolts;
+    // double rightVolts;
+
     CANSparkMax m_leftLeadMotor{DriveConst::kleft_lead_neo_number,CANSparkMax::MotorType::kBrushless};
     CANSparkMax m_rightLeadMotor{DriveConst::kright_lead_neo_number,CANSparkMax::MotorType::kBrushless};
     CANSparkMax m_leftFollowMotor{DriveConst::kleft_follow_neo_number,CANSparkMax::MotorType::kBrushless};
@@ -56,17 +63,34 @@ private:
     frc::DifferentialDriveKinematics kinematics{AutoConst::ktrack_width_meters};
     frc::DifferentialDriveOdometry odometry{GetHeading(), pose};
     
+    frc::DifferentialDriveWheelSpeeds wheelsSpeeds{}; 
 
     //Get actual values later from sysid 2022
-    frc::SimpleMotorFeedforward<units::meters> feedforward{AutoConst::kS,AutoConst::kV};
+    frc::SimpleMotorFeedforward<units::meters> feedforward{AutoConst::kS,AutoConst::kV, AutoConst::kA};
+    frc::PIDController leftPIDController{AutoConst::kP,AutoConst::kI,AutoConst::kD};
+    frc::PIDController rightPIDController{AutoConst::kP,AutoConst::kI,AutoConst::kD};
 
-    //
-    frc::PIDController leftPIDController{9.95,0,0};
-    frc::PIDController rightPIDController{9.95,0,0};
 
     frc::TrajectoryConfig config{AutoConst::kmax_velocity,AutoConst::kmax_acceleration};
+    frc::TrajectoryGenerator trajectoryGenerator;
+    frc::Trajectory trajectory;
 
-    frc::RamseteController command{}
+    //has default values of 2.0 and 0.7
+    frc::RamseteController controller;
+
+    frc2::RamseteCommand command{
+
+        trajectory,
+        UpdateOdometry,
+        controller,
+        feedforward,
+        kinematics,
+        GetSpeeds,
+        leftPIDController,
+        rightPIDController,
+        SetOutput,
+        drive
+    };
 
 
 };
