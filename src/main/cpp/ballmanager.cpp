@@ -8,24 +8,40 @@ std::string BallManager::GetHopperState(int slot)
 
 void BallManager::CheckHopperState()
 {
-    if(IsEmpty())
-    {
-        RunHopperMotor(0.5, 0.5);
-    }
-    if(CheckForBall)
+    if(CheckForBall())
     {
         position[0] = ClosestColor();
     }
+    if(!BeamBroken() && !CheckForBall())
+    {
+        inbetween = position[0];
+        
+    }
+    if(BeamBroken())
+    {
+        position[1] = inbetween;
+        position[0] = "NULL";
+    }
+    if(!BeamBroken())
+    {
+        positition[1] = "NULL";
+    }
 }
 
-bool BallManager::MoveIndex(int start, int end)
+bool BallManager::MoveIndex()
 {
-
+    if(!BeamBroken() && position[0] != "NULL")
+    {
+        RunHopperMotor(0.5, 0);
+    }
 }
 
 void BallManager::LoadHopper()
 {
-
+    if(IsEmpty())
+    {
+        RunHopperMotor(0.5, 0.5);
+    }
 }
 
 bool BallManager::IsEmpty()
