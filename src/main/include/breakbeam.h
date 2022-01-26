@@ -2,7 +2,7 @@
 #define BREAKBEAM
 
 #include <frc/DigitalInput.h>
-
+#include <frc/shuffleboard/Shuffleboard.h>
 #include "settings.h"
 
 class BeamBreak {

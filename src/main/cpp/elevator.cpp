@@ -33,3 +33,17 @@ void Elevator::LockElevator() {
 }
 
 void Elevator::UnlockElevator() { solenoid0.Set(0); }
+
+void Elevator::ElevatorAmp(int amp) {
+  amp = elevator_motor.GetOutputCurrent();
+}
+
+void Elevator::ElevatorPosition(int position) {
+  position = elevator_motor.GetSelectedSensorPosition(0);
+}
+
+void Elevator::ElevatorPneumaticState(int pneumatic) {
+  pneumatic = solenoid0.Get(); 
+}
+
+

@@ -22,3 +22,7 @@ void DriveBase::Drive() {
 
   // m_pidController.SetReference(rotations, rev::ControlType::kPosition);
 }
+
+void DriveBase::DriveBaseAmp(int amp1, int amp2, int amp3, int amp4) {
+  amp1 = m_leftLeadMotor.GetOutputCurrent(); 
+}
