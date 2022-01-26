@@ -12,7 +12,7 @@ void BallManager::CheckHopperState()
     {
         position[0] = ClosestColor();
     }
-    if(!BeamBroken() && !CheckForBall())
+    if(!BeamBroken() && !CheckForBall() && position[0] != "NULL")
     {
         inbetween = position[0];
         
@@ -41,6 +41,10 @@ void BallManager::LoadHopper()
     if(IsEmpty())
     {
         RunHopperMotor(0.5, 0.5);
+    }
+    if(BeamBroken() && !CheckForBall())
+    {
+        RunHopperMotor(0, 0.5);
     }
 }
 
