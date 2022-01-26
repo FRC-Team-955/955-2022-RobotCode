@@ -6,28 +6,41 @@
 #include "Robot.h"
 #include "ctre/Phoenix.h"
 #include <cameraserver/CameraServer.h>
+#include "rev/CANSparkMax.h"
+// #include "drivebase.h"
+// #include "colorsensor.h"
+#include "settings.h"
 
-#include "drivebase.h"
-#include "colorsensor.h"
+using namespace rev;
 
-using namespace frc;
+// Joystick *joystick;
 
-Joystick *joystick;
+// DriveBase *drivebase;
+// ColorSensor *color_sensor;
 
-DriveBase *drivebase;
-ColorSensor *color_sensor;
+  CANSparkMax m_leftLeadMotor{5,
+                              CANSparkMax::MotorType::kBrushless};
+  // CANSparkMax m_rightLeadMotor{DriveConst::kright_lead_neo_number,
+  //                              CANSparkMax::MotorType::kBrushless};
+  // CANSparkMax m_leftFollowMotor{DriveConst::kleft_follow_neo_number,
+  //                               CANSparkMax::MotorType::kBrushless};
+  // CANSparkMax m_rightFollowMotor{DriveConst::kright_follow_neo_number,
+  //                                CANSparkMax::MotorType::kBrushless};
 
 void Robot::RobotInit() {
-  frc::CameraServer::GetInstance()->StartAutomaticCapture();
+  // frc::CameraServer::GetInstance()->StartAutomaticCapture();
 }
 void Robot::RobotPeriodic() {}
 void Robot::AutonomousInit() {}
 void Robot::AutonomousPeriodic() {}
 void Robot::TeleopInit() {
-  drivebase = new DriveBase();
-  color_sensor = new ColorSensor();
+  // drivebase = new DriveBase();
+  // color_sensor = new ColorSensor();
 }
-void Robot::TeleopPeriodic() { drivebase->Drive(); }
+void Robot::TeleopPeriodic() { 
+  // drivebase->Drive(); 
+  m_leftLeadMotor.Set(.5);
+  }
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
 void Robot::TestInit() {}
