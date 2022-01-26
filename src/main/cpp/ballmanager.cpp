@@ -8,30 +8,26 @@ std::string BallManager::GetHopperState(int slot)
 
 void BallManager::CheckHopperState()
 {
-    if(CheckForBall())
+    if(color_sensor.CheckForBall())
     {
-        position[0] = ClosestColor();
+        position[0] = color_sensor.ClosestColor();
     }
-    if(!BeamBroken() && !CheckForBall() && position[0] != "NULL")
+    if(!break_beam.BeamBroken() && !color_sensor.CheckForBall() && position[0] != "NULL")
     {
         inbetween = position[0];
         position[0] = "NULL";
     }
-    if(BeamBroken())
+    if(break_beam.BeamBroken())
     {
         position[1] = inbetween;
     }
-    if(!BeamBroken())
-    {
-        positition[1] = "NULL";
-    }
 }
 
-bool BallManager::MoveIndex()
+void BallManager::MoveIndex()
 {
-    if(!BeamBroken() && position[0] != "NULL")
+    if(!break_beam.BeamBroken() && position[0] != "NULL")
     {
-        RunHopperMotor(0.5, 0);
+        hopper.RunHopperMotor(0.5, 0);
     }
 }
 
@@ -39,11 +35,11 @@ void BallManager::LoadHopper()
 {
     if(IsEmpty())
     {
-        RunHopperMotor(0.5, 0.5);
+        hopper.RunHopperMotor(0.5, 0.5);
     }
-    if(BeamBroken() && !CheckForBall())
+    if(break_beam.BeamBroken() && !color_sensor.CheckForBall())
     {
-        RunHopperMotor(0, 0.5);
+        hopper.RunHopperMotor(0, 0.5);
     }
 }
 
@@ -54,5 +50,19 @@ bool BallManager::IsEmpty()
     }
     else{
         return 0;
+    }
+}
+
+void BallManager::Shoot()
+{
+    if(shooter.ShootAtVelocity(10000) >= 1000 && position[1] == team_color)
+    {
+        shooter.ShootAtVelocity(1000);
+        position[1] = "NULL";
+    }
+    else if(shooter.ShootAtVelocity(10000) >= 100 && position[1] != team_color)
+    {
+        shooter.ShootAtVelocity(100);
+        position[1] = "NULL";
     }
 }

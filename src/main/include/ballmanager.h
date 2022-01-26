@@ -15,17 +15,25 @@ using namespace frc;
 
 class BallManager {
 public:
-  BallManager() {}
+  BallManager(){};
   std::string GetHopperState(int position);
   void Shoot();
-  bool MoveIndex(int start, int end);
+  void MoveIndex();
+  void CheckHopperState();
+  bool IsEmpty();
+  void LoadHopper();
   
 
 
 private:
-  std::string position[2];//position[0] = color of position 1 position[1] = color of position 2
-  position[0] = "NULL";
-  position[1] = "NULL";
-  std::string inbetween;
+  std::string position[2] = {"NULL", "NULL"};//position[0] = color of position 1 position[1] = color of position 2
+  std::string inbetween = "NULL";
+  std::string team_color = "Red";
+
+  ColorSensor color_sensor;
+  BeamBreak break_beam;
+  Hopper hopper;
+  Shooter shooter;
+
 };
 #endif

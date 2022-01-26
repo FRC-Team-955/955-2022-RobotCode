@@ -9,9 +9,10 @@
 using namespace frc;
 
 class Shooter {
-  Shooter() {}
+
 
 public:
+  Shooter() {}
   float ShootAtVelocity(int velocity);
   void ShootPercentOutput(int percent);
 
