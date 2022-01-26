@@ -1,26 +1,58 @@
-#include "ball_manager.h"
+#include "ballmanager.h"
+using namespace frc;
 
-std::string BallManager::GetHopperState(int position){
-    if(CheckForBall() == true && Ball2[1] != "Position 2" && Ball1[1] != "Position 2"){
-            Ball1[0] = ClosestColor();
-    }
-    if(BeamBroken() == true){
-        Ball1[1] = "Position 2";
-    }
-    if(CheckForBall() == true && Ball1[1] == "Position 2"){
-        Ball2[0] = ClosestColor();    
-        Ball2[1] = "Position 1";
-    }
+std::string BallManager::GetHopperState(int slot)
+{
+    return position[slot - 1];
+}
 
-    if (position == 1){
-        return Ball2[0];
-    } else if (position == 2){
-        return Ball1[0];
+void BallManager::CheckHopperState()
+{
+    if(CheckForBall())
+    {
+        position[0] = ClosestColor();
+    }
+    if(!BeamBroken() && !CheckForBall() && position[0] != "NULL")
+    {
+        inbetween = position[0];
+        position[0] = "NULL";
+    }
+    if(BeamBroken())
+    {
+        position[1] = inbetween;
+    }
+    if(!BeamBroken())
+    {
+        positition[1] = "NULL";
     }
 }
 
-void BallManager::ShootBall(){
-
+bool BallManager::MoveIndex()
+{
+    if(!BeamBroken() && position[0] != "NULL")
+    {
+        RunHopperMotor(0.5, 0);
+    }
 }
 
-bool BallManager::MovePosition(0, 1)
+void BallManager::LoadHopper()
+{
+    if(IsEmpty())
+    {
+        RunHopperMotor(0.5, 0.5);
+    }
+    if(BeamBroken() && !CheckForBall())
+    {
+        RunHopperMotor(0, 0.5);
+    }
+}
+
+bool BallManager::IsEmpty()
+{
+    if(position[1] == "NULL" && position[0] == "NULL"){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
