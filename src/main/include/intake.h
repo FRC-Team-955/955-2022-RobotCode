@@ -12,6 +12,8 @@ class Intake{
 void intake_run();
 
     private:
+    int stage = 0;
+    float intake1 = 0.3;
     Timer time1{};
     Joystick joy1{1};
     TalonSRX t1{2};
