@@ -35,32 +35,26 @@ public:
     Auto() {
         m_leftFollowMotor.Follow(m_leftLeadMotor);
         m_rightFollowMotor.Follow(m_rightLeadMotor);
-
         m_leftLeadMotor.SetInverted(false);
         m_rightLeadMotor.SetInverted(true);
-
+        m_leftLeadMotor.GetEncoder().SetPosition(0);
+        m_rightLeadMotor.GetEncoder().SetPosition(0);
+        gyro.Reset();
         config.SetKinematics(kinematics);
     };
 
+    void Reset();
     frc::Rotation2d GetHeading();
     frc::Pose2d UpdateOdometry();
-    
-
     void Drive(units::meters_per_second_t xSpeed,units::radians_per_second_t rot);
-
     void SetSpeeds(const frc::DifferentialDriveWheelSpeeds& speeds);
-
-
     void GenerateTrajectory();
-
     //frc::DifferentialDriveWheelSpeeds GetSpeeds();
     // void SetOutput(double leftVolts,double rightVolts);
 
-
     //from Trajectory Follower
+    void Start();
     bool RunRamsete();
-    
-
 private:
     // double leftVolts;
     // double rightVolts;

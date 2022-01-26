@@ -1,8 +1,17 @@
 #include "auto.h"
+void Auto::Reset(){
+        m_leftFollowMotor.Follow(m_leftLeadMotor);
+        m_rightFollowMotor.Follow(m_rightLeadMotor);
+        m_leftLeadMotor.SetInverted(false);
+        m_rightLeadMotor.SetInverted(true);
+        m_leftLeadMotor.GetEncoder().SetPosition(0);
+        m_rightLeadMotor.GetEncoder().SetPosition(0);
+        gyro.Reset();
+}
 
 frc::Rotation2d Auto::GetHeading(){
     //has neg cause nevx returns pos values for clockwise, but for unit circles clock is neg
-    return frc::Rotation2d(units::radian_t(-gyro.GetAngle   ()));
+    return frc::Rotation2d(units::radian_t(-gyro.GetAngle()));
 }
 frc::Pose2d Auto::UpdateOdometry(){
     //updates the position of the pose of the robot via the odometry 
@@ -59,6 +68,9 @@ void Auto::GenerateTrajectory(){
 //     // m_rightLeadMotor.GetEncoder().GetVelocity() *(AutoConst::kwheel_diameter_meters *M_PI) / (AutoConst::kgear_ratio*60)
 
 // }
+
+void Auto::Start(){
+}
 
 bool Auto::RunRamsete(){
 
