@@ -35,5 +35,6 @@ private:
   frc::Joystick joystick{0};
 
   bool ReverseDrive = false;
+  bool isQuickTurn = false;
 };
 #endif

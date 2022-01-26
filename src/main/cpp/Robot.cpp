@@ -9,6 +9,8 @@
 
 #include "colorsensor.h"
 #include "drivebase.h"
+#include "breakbeam.h"
+
 
 
 using namespace frc;
@@ -17,6 +19,7 @@ Joystick *joystick;
 
 DriveBase *drivebase;
 ColorSensor *color_sensor;
+//Breakbeam
 
 void Robot::RobotInit() {
   frc::CameraServer::GetInstance()->StartAutomaticCapture();
@@ -30,6 +33,8 @@ void Robot::TeleopInit() {
 }
 void Robot::TeleopPeriodic() { 
   drivebase->Drive();
+  //std::cout << color_sensor->ClosestColor() << std::endl;
+  
 }
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}

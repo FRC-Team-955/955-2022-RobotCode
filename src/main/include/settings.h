@@ -3,7 +3,7 @@
 namespace Joy0Const {
 constexpr int kquick_turn_button = 1;
 constexpr int kdrive_speed_axis = 1;
-constexpr int kdrive_curvature_axis = 5;
+constexpr int kdrive_curvature_axis = 4;
 constexpr int kreverse_drive = 4;
 } // namespace Joy0Const
 

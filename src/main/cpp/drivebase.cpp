@@ -3,8 +3,9 @@
 
 void DriveBase::Drive() {
 
-  bool isQuickTurn = joystick.GetRawButton(Joy0Const::kquick_turn_button);
-
+  if (joystick.GetRawButtonPressed(Joy0Const::kquick_turn_button)) {
+    isQuickTurn = !isQuickTurn;
+  }
   if (joystick.GetRawButtonPressed(Joy0Const::kreverse_drive)) {
     ReverseDrive = !ReverseDrive;
   }
@@ -12,14 +13,18 @@ void DriveBase::Drive() {
     m_robotDrive.CurvatureDrive(
         joystick.GetRawAxis(Joy0Const::kdrive_speed_axis),
         joystick.GetRawAxis(Joy0Const::kdrive_curvature_axis), isQuickTurn);
+    frc::SmartDashboard::PutBoolean("isQuickTurn", isQuickTurn);
     frc::SmartDashboard::PutBoolean("Reverse Drive", ReverseDrive);
 
   } else {
     m_robotDrive.CurvatureDrive(
         -joystick.GetRawAxis(Joy0Const::kdrive_speed_axis),
-        -joystick.GetRawAxis(Joy0Const::kdrive_curvature_axis), isQuickTurn);
+        joystick.GetRawAxis(Joy0Const::kdrive_curvature_axis), isQuickTurn);
+    frc::SmartDashboard::PutBoolean("isQuickTurn", isQuickTurn);
+
     frc::SmartDashboard::PutBoolean("Reverse Drive", ReverseDrive);
   }
+   
 
   // m_pidController.SetReference(rotations, rev::ControlType::kPosition);
 }
