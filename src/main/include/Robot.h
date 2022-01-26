@@ -7,7 +7,7 @@
 #include <frc/TimedRobot.h>
 //
 class Robot : public frc::TimedRobot {
- public:
+public:
   void RobotInit() override;
   void RobotPeriodic() override;
 
