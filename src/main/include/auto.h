@@ -1,6 +1,7 @@
 #ifndef AUTO
 #define AUTO
 
+
 #include "rev/CANSparkMax.h"
 
 #include <frc/kinematics/DifferentialDriveKinematics.h>
@@ -18,11 +19,11 @@
 
 #include <frc/geometry/Pose2d.h>
 
+#include <frc/Timer.h>
+
 #include "AHRS.h"
 
 #include <math.h>
-
-#include <units/energy.h>
 
 #include "settings.h"
 
@@ -37,14 +38,27 @@ public:
 
         m_leftLeadMotor.SetInverted(false);
         m_rightLeadMotor.SetInverted(true);
+
         config.SetKinematics(kinematics);
     };
 
     frc::Rotation2d GetHeading();
-    frc::DifferentialDriveWheelSpeeds GetSpeeds();
     frc::Pose2d UpdateOdometry();
+    
+
+    void Drive(units::meters_per_second_t xSpeed,units::radians_per_second_t rot);
+
+    void SetSpeeds(const frc::DifferentialDriveWheelSpeeds& speeds);
+
+
     void GenerateTrajectory();
-    void SetOutput(double leftVolts,double rightVolts);
+
+    //frc::DifferentialDriveWheelSpeeds GetSpeeds();
+    // void SetOutput(double leftVolts,double rightVolts);
+
+
+    //from Trajectory Follower
+    bool RunRamsete();
     
 
 private:
@@ -77,20 +91,7 @@ private:
 
     //has default values of 2.0 and 0.7
     frc::RamseteController controller;
-
-    frc2::RamseteCommand command{
-
-        trajectory,
-        UpdateOdometry,
-        controller,
-        feedforward,
-        kinematics,
-        GetSpeeds,
-        leftPIDController,
-        rightPIDController,
-        SetOutput,
-        drive
-    };
+    frc::Timer m_timer;
 
 
 };
