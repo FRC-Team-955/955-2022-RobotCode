@@ -11,6 +11,7 @@ using namespace frc;
 #include "breakbeam.h"
 #include "colorsensor.h"
 #include "hopper.h"
+#include "shooter.h"
 
 class BallManager {
 public:
@@ -26,8 +27,5 @@ private:
   position[0] = "NULL";
   position[1] = "NULL";
   std::string inbetween;
-  
-  TalonSRX hopper_motor{1};
-  Solenoid solenoid0{PneumaticsModuleType::CTREPCM , 0};
 };
 #endif

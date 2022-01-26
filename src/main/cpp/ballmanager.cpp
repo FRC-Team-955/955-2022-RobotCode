@@ -15,12 +15,11 @@ void BallManager::CheckHopperState()
     if(!BeamBroken() && !CheckForBall() && position[0] != "NULL")
     {
         inbetween = position[0];
-        
+        position[0] = "NULL";
     }
     if(BeamBroken())
     {
         position[1] = inbetween;
-        position[0] = "NULL";
     }
     if(!BeamBroken())
     {
