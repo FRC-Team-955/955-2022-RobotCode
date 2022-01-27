@@ -7,7 +7,13 @@ constexpr int kdrive_curvature_axis = 5;
 constexpr int kreverse_drive = 4;
 } // namespace Joy0Const
 
-namespace Joy1Const {}
+namespace Joy1Const {
+constexpr int kshooter_axis = 0;
+constexpr int khopper_top_axis = 4;    // I think these are the triggers?
+constexpr int khopper_bottom_axis = 5; // I think these are the triggers?
+constexpr int kelevator_axis = 3;      // right stick up and down?
+constexpr int kelevator_lock_button = 1;
+} // namespace Joy1Const
 
 namespace SensorConst {
 constexpr int kbreak_beam_port = 0;
@@ -33,6 +39,6 @@ constexpr int khopper_motor_bottom_port = 2;
 constexpr int kelevator_motor_port = 6;
 constexpr int kelevator_pnumatic_port = 0;
 constexpr int kshooter_talon_port = 8;
-}
+} // namespace MechanismConst
 
 namespace AutoConst {}
