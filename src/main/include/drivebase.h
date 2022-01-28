@@ -1,6 +1,7 @@
 #ifndef DRIVEBASE
 #define DRIVEBASE
 
+#include "iostream"
 #include "rev/CANSparkMax.h"
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
@@ -14,6 +15,8 @@ public:
   DriveBase() {
     m_rightFollowMotor.Follow(m_rightLeadMotor);
     m_leftFollowMotor.Follow(m_leftLeadMotor);
+    m_leftLeadMotor.SetInverted(DriveConst::kleft_lead_is_inverted);
+    m_rightLeadMotor.SetInverted(DriveConst::kright_lead_is_inverted);
   };
   void Drive();
 
@@ -30,5 +33,7 @@ private:
   frc::DifferentialDrive m_robotDrive{m_leftLeadMotor, m_rightLeadMotor};
 
   frc::Joystick joystick{0};
+
+  bool ReverseDrive = false;
 };
 #endif
