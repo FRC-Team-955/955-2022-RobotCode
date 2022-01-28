@@ -1,12 +1,18 @@
 #include "auto.h"
 void Auto::Reset(){
-        m_leftFollowMotor.Follow(m_leftLeadMotor);
-        m_rightFollowMotor.Follow(m_rightLeadMotor);
-        m_leftLeadMotor.SetInverted(false);
-        m_rightLeadMotor.SetInverted(true);
-        m_leftLeadMotor.GetEncoder().SetPosition(0);
-        m_rightLeadMotor.GetEncoder().SetPosition(0);
-        gyro.Reset();
+    m_leftFollowMotor.Follow(m_leftLeadMotor);
+    m_rightFollowMotor.Follow(m_rightLeadMotor);
+    m_leftLeadMotor.SetInverted(false);
+    m_rightLeadMotor.SetInverted(true);
+    m_leftLeadMotor.GetEncoder().SetPosition(0);
+    m_rightLeadMotor.GetEncoder().SetPosition(0);
+    gyro.Reset();
+    config.SetKinematics(kinematics);
+}
+void Auto::ResetOdometry(const frc::Pose2d& pose) {
+    //You need to run Reset before this as Encoders need to be reset
+    //resets the positions of the position
+    odometry.ResetPosition(pose, GetHeading()); 
 }
 
 frc::Rotation2d Auto::GetHeading(){
@@ -32,14 +38,13 @@ void Auto::SetSpeeds(const frc::DifferentialDriveWheelSpeeds& speeds) {
     const auto leftFeedforward = feedforward.Calculate(speeds.left);
     const auto rightFeedforward = feedforward.Calculate(speeds.right);
 
+    //Sets the left and right pid correction values with the current velocity and the target velocity
     const double leftOutput = leftPIDController.Calculate(
-        double(m_leftLeadMotor.GetEncoder().GetVelocity() / AutoConst::kgear_ratio *AutoConst::kwheel_diameter_meters *M_PI / 60)
-        , speeds.left.to<double>()); 
-
+        double(m_leftLeadMotor.GetEncoder().GetVelocity() / AutoConst::kgear_ratio *AutoConst::kwheel_diameter_meters *M_PI / 60), speeds.left.to<double>()); 
     const double rightOutput = rightPIDController.Calculate(
-        double(m_rightLeadMotor.GetEncoder().GetVelocity() / AutoConst::kgear_ratio *AutoConst::kwheel_diameter_meters *M_PI / 60)
-        , speeds.right.to<double>()); 
+        double(m_rightLeadMotor.GetEncoder().GetVelocity() / AutoConst::kgear_ratio *AutoConst::kwheel_diameter_meters *M_PI / 60), speeds.right.to<double>()); 
 
+    //Sets the voltage to the motors should be between -12V to 12V
     m_leftLeadMotor.SetVoltage(units::volt_t{leftOutput} + leftFeedforward);
     m_rightLeadMotor.SetVoltage(units::volt_t{rightOutput} + rightFeedforward);
 }
@@ -47,6 +52,10 @@ void Auto::SetSpeeds(const frc::DifferentialDriveWheelSpeeds& speeds) {
 void Auto::GenerateTrajectory(){
     //just as a test makes a trajectory from 0,0(no heading) to 1,0(no heading still)
     trajectory = trajectoryGenerator.GenerateTrajectory(frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),{frc::Translation2d(0.5_m, 0_m)}, frc::Pose2d(1_m,0_m, frc::Rotation2d(0_deg)),config);
+}
+
+void Auto::SetTrajectory(frc::Trajectory trajectory_input){
+    trajectory= trajectory_input;
 }
 
 // void Auto::SetOutput(double leftVolts,double rightVolts){
@@ -70,8 +79,33 @@ void Auto::GenerateTrajectory(){
 // }
 
 void Auto::Start(){
+    GenerateTrajectory();
+    //Runs the Auto::Reset which well resets motor direction, encoders,and gyro
+    Reset();
+    //Starts the timer
+    m_timer.Start();
+    //resets the Odometry to the initial positions of the trajectory
+    ResetOdometry(trajectory.InitialPose());
 }
 
 bool Auto::RunRamsete(){
+    if (m_timer.Get()< trajectory.TotalTime()){
+        // Get the desired pose at the current time from the trajectory.
+        auto desiredPose = trajectory.Sample(m_timer.Get());
+
+        // Get the reference chassis speeds from the Ramsete Controller with the current position obtained by UpdateOdometry() and the desiredPose.
+        auto refChassisSpeeds = ramsetecontroller.Calculate(UpdateOdometry(), desiredPose);
+
+        //runs drive with given linear speed and rotational speed
+        Drive(refChassisSpeeds.vx, refChassisSpeeds.omega);
+
+    }else {
+      //stops motors and timer
+      Drive(0_mps, 0_rad_per_s);
+      m_timer.Stop();
+      m_timer.Reset();
+      return true;
+    }
+    return false;
 
 }

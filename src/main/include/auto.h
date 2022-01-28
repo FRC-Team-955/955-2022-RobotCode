@@ -22,13 +22,9 @@
 #include <frc/Timer.h>
 
 #include "AHRS.h"
-
 #include <math.h>
-
 #include "settings.h"
-
 using namespace rev;
-
 
 class Auto {
 public:
@@ -39,31 +35,50 @@ public:
         m_rightLeadMotor.SetInverted(true);
         m_leftLeadMotor.GetEncoder().SetPosition(0);
         m_rightLeadMotor.GetEncoder().SetPosition(0);
+        m_leftLeadMotor.SetSmartCurrentLimit(40);
+        m_rightLeadMotor.SetSmartCurrentLimit(40);
         gyro.Reset();
         config.SetKinematics(kinematics);
     };
-
+    //Resets follow, inversion, encoders, and gyro
     void Reset();
+
+    //Resets the Odometry to the inputed position
+    void ResetOdometry(const frc::Pose2d& pose);
+
+    //Returns the Rotation2d(direction) of the robot
     frc::Rotation2d GetHeading();
+
+    //Returns the position of the robot
     frc::Pose2d UpdateOdometry();
+
+    //Coverts Linear and Rotational speed into left and right rotation speed. With values instantly runs SetSpeeds 
     void Drive(units::meters_per_second_t xSpeed,units::radians_per_second_t rot);
+    //Run the wheels at a target volocity
     void SetSpeeds(const frc::DifferentialDriveWheelSpeeds& speeds);
+
+    //Generates a Trajectory of a line
     void GenerateTrajectory();
+    //Sets the trajectory to the inputed Trajectory
+    void SetTrajectory(frc::Trajectory trajectory_input);
+
     //frc::DifferentialDriveWheelSpeeds GetSpeeds();
     // void SetOutput(double leftVolts,double rightVolts);
 
-    //from Trajectory Follower
+    //Trajectory Follower
     void Start();
     bool RunRamsete();
 private:
     // double leftVolts;
     // double rightVolts;
 
-    CANSparkMax m_leftLeadMotor{DriveConst::kleft_lead_neo_number,CANSparkMax::MotorType::kBrushless};
+    //Creates all the SparkMax
+    CANSparkMax m_leftLeadMotor{DriveConst::kright_lead_neo_number,CANSparkMax::MotorType::kBrushless}; 
     CANSparkMax m_rightLeadMotor{DriveConst::kright_lead_neo_number,CANSparkMax::MotorType::kBrushless};
     CANSparkMax m_leftFollowMotor{DriveConst::kleft_follow_neo_number,CANSparkMax::MotorType::kBrushless};
     CANSparkMax m_rightFollowMotor{DriveConst::kright_follow_neo_number,CANSparkMax::MotorType::kBrushless};
 
+    //Creates the Navx
     AHRS gyro{frc::SPI::Port::kMXP};
 
     frc::Pose2d pose;
@@ -84,7 +99,7 @@ private:
     frc::Trajectory trajectory;
 
     //has default values of 2.0 and 0.7
-    frc::RamseteController controller;
+    frc::RamseteController ramsetecontroller;
     frc::Timer m_timer;
 
 
