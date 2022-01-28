@@ -8,7 +8,10 @@ using namespace frc;
 
 class Intake{
     public:
-
+Intake(){
+    t1.TalonSRX::ConfigPeakCurrentLimit(40);
+    t1.TalonSRX::EnableCurrentLimit(true);
+}
 void intake_run();
 
     private:
@@ -17,7 +20,6 @@ void intake_run();
     Timer time1{};
     Joystick joy1{1};
     TalonSRX t1{2};
-    TalonSRX t2{3};
     Solenoid sol1{PneumaticsModuleType::CTREPCM , 0};
     Solenoid sol2{PneumaticsModuleType::CTREPCM , 1};
 };
