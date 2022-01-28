@@ -5,6 +5,7 @@
 #include <frc/Joystick.h>
 #include <frc/Solenoid.h>
 #include <frc/shuffleboard/Shuffleboard.h>
+<<<<<<< Updated upstream
 #include "settings.h"
 
 using namespace frc;
@@ -18,3 +19,8 @@ public:
 private: 
 
 }
+=======
+
+using namespace frc;
+using namespace std; 
+>>>>>>> Stashed changes
