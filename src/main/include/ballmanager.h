@@ -22,6 +22,7 @@ public:
   void CheckHopperState();
   bool IsEmpty();
   void LoadHopper();
+  void Reject();
   
 
 

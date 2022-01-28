@@ -60,9 +60,18 @@ void BallManager::Shoot()
         shooter.ShootAtVelocity(1000);
         position[1] = "NULL";
     }
-    else if(shooter.ShootAtVelocity(10000) >= 100 && position[1] != team_color)
+}
+
+void BallManager::Reject()
+{
+    if(shooter.ShootAtVelocity(10000) >= 100 && position[1] != team_color)
     {
         shooter.ShootAtVelocity(100);
         position[1] = "NULL";
+    }
+    if(position[0] != team_color)
+    {
+        hopper.RunHopperMotor(0, -0.5);
+        hopper.RunHopperMotor(0, 0.5);
     }
 }
