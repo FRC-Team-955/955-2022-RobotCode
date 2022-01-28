@@ -18,8 +18,8 @@ class Shooter {
 
 
     private:
-    CANSparkMax shooterneo_lead {DriveConst::kright_lead_neo_number, CANSparkMax::MotorType::kBrushless};
-    CANSparkMax shooterneo_follow {DriveConst::kright_lead_neo_number, CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkMax shooterneo_lead {DriveConst::kright_lead_neo_number, CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkMax shooterneo_follow {DriveConst::kright_lead_neo_number, CANSparkMax::MotorType::kBrushless};
 
 
 };
