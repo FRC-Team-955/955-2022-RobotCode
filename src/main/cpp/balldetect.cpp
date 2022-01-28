@@ -1,16 +1,13 @@
 #include "balldetect.h"
 
 
-int BallDetect::BallDetectorX(){
-photonlib::PhotonPipelineResult result = camera.GetLatestResult();
-
-
+double BallDetect::BallDetectorX(photonlib::PhotonPipelineResult result){
 
 if (result.HasTargets()) {
     return result.GetBestTarget().GetYaw();
 } else {
 
-return false;
+return 0;
 
 }
 
@@ -19,18 +16,13 @@ return false;
     
 }
 
-int BallDetect::BallDetectorY(){
-photonlib::PhotonPipelineResult result = camera.GetLatestResult();
-
-
-
-
+double BallDetect::BallDetectorY(photonlib::PhotonPipelineResult result){
 	
 if (result.HasTargets()) {
     return result.GetBestTarget().GetPitch();
 } else{
 	
-        return false;
+        return 0;
     }    
 }
 

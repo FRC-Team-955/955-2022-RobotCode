@@ -7,12 +7,16 @@
 #include "balldetect.h"
 
 
+
 XYalign *xy_align;
 BallDetect *balldetect;
 
-void Robot::RobotInit() {
+photonlib::PhotonCamera camera{"ball"};
 
+
+void Robot::RobotInit() {
   //xy_align = new XYalign();  
+
 }
 void Robot::RobotPeriodic() {}
 
@@ -23,9 +27,9 @@ void Robot::TeleopInit() {
 
 }
 void Robot::TeleopPeriodic() {
-  
-  std::cout<<balldetect -> BallDetectorX()<<std::endl;
-  
+  photonlib::PhotonPipelineResult result = camera.GetLatestResult();
+  std::cout<<balldetect -> BallDetectorX(result)<<std::endl;
+ 
 
 }
 

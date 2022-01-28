@@ -11,14 +11,14 @@ class BallDetect{
             
              
          }
-			int BallDetectorY();
-			int BallDetectorX();
+			double BallDetectorY(photonlib::PhotonPipelineResult result);
+			double BallDetectorX(photonlib::PhotonPipelineResult result);
 
 			
 
 	    private:
           bool BallDetected;
-		  photonlib::PhotonCamera camera{"BallDetect"};
+		 
 
 
 };
