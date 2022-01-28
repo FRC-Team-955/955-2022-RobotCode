@@ -1,5 +1,6 @@
 #include "elevator.h"
-
+#include "shuffleboard.h" 
+#include <frc/shuffleboard/Shuffleboard.h>
 using namespace frc;
 
 void Elevator::ElevatorMove(int joystick_position) {
@@ -44,6 +45,12 @@ void Elevator::ElevatorPosition(int position) {
 
 void Elevator::ElevatorPneumaticState(int pneumatic) {
   pneumatic = solenoid0.Get(); 
+  string f; 
+  f = "Hi";
+  frc::Shuffleboard::GetTab("Auto");
+  Shuffleboard::GetTab(f);
 }
+
+
 
 

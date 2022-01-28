@@ -19,6 +19,7 @@ DriveBase *drivebase;
 ColorSensor *color_sensor;
 
 void Robot::RobotInit() {
+  frc::Shuffleboard::GetTab("Auto");
   frc::CameraServer::GetInstance()->StartAutomaticCapture();
 }
 void Robot::RobotPeriodic() {}

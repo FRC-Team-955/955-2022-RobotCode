@@ -6,6 +6,7 @@
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/shuffleboard/Shuffleboard.h>
+#include "rev/CANSparkMax.h"
 #include "settings.h"
 
 using namespace rev;
@@ -18,6 +19,7 @@ public:
   };
   void Drive();
   void DriveBaseAmp(int amp1, int amp2, int amp3, int amp4);
+  void DriveBaseSpeed(int speed, double number);
 
 private:
   CANSparkMax m_leftLeadMotor{DriveConst::kleft_lead_neo_number,

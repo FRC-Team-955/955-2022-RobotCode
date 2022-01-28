@@ -28,7 +28,6 @@ public:
   frc::Color GetColor();
 
   bool CheckForBall();
-  void ColorSensor(int read);
 
 private:
   ColorSensorV3 *rev_color_sensor;

@@ -8,5 +8,6 @@ void Hopper::RunHopperMotor(int hopper_motor_top_percent, int hopper_motor_botto
 void Hopper::HopperAmp(int amp1, int amp2) {
   amp1 = talon_hopper_bottom.GetOutputCurrent();
   amp2 = talon_hopper_top.GetOutputCurrent();
+ 
 }
 

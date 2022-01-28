@@ -10,11 +10,10 @@
 using namespace frc;
 using namespace std; 
 
-class Shuffleboard {
-Shuffle(){}
+class ShuffleBoard {
+
 
 public:
-
 
 private: 
 
