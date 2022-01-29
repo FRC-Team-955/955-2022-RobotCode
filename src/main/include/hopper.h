@@ -1,8 +1,8 @@
 #ifndef HOPPER
 #define HOPPER
 #include "settings.h"
+#include <ctre/Phoenix.h>
 #include <algorithm>
-using namespace frc;
 
 class Hopper{
     public:
