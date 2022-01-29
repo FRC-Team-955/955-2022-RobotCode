@@ -30,10 +30,13 @@ void DriveBase::DriveBaseAmp(int amp1, int amp2, int amp3, int amp4) {
   amp4 = m_rightFollowMotor.GetOutputCurrent(); 
 }
 
-void DriveBase::DriveBaseSpeed(int speed, double number) {
+void DriveBase::DriveBaseSpeed(int speedleft, int speedright, double number) {
   number = 2*3.14159*0.1016/609; 
-  SetVelocityConversionFactor(number);
+  m_leftLeadMotor.SetVelocityConversionFactor(number);
   GetVelocityConversionFactor();
-  speed = GetVelocity();
+  speedleft= GetVelocity();
+  m_rightLeadMotor.SetVelocityConversionFactor(number)
+  GetVelocityConversionFactor();
+  speedright = GetVelocity(); 
 
 }
