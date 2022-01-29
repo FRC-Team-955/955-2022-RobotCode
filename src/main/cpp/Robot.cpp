@@ -5,11 +5,15 @@
 #include "Robot.h"
 #include "xy_align.h"
 #include "balldetect.h"
+//#include "ctre/Phoenix.h"
+
 
 
 
 XYalign *xy_align;
 BallDetect *balldetect;
+//TalonSRX t1{6};
+//TalonSRX t2{1};
 
 photonlib::PhotonCamera camera{"ball"};
 
@@ -27,9 +31,10 @@ void Robot::TeleopInit() {
 
 }
 void Robot::TeleopPeriodic() {
-  photonlib::PhotonPipelineResult result = camera.GetLatestResult();
-  std::cout<<balldetect -> BallDetectorX(result)<<std::endl;
- 
+  //photonlib::PhotonPipelineResult result = camera.GetLatestResult();
+  //std::cout<<balldetect -> BallDetectorX(result)<<std::endl;
+  //t1.Set(ControlMode::PercentOutput, 0)
+  //t2.Set(ControlMode::PercentOutput, 0)
 
 }
 
