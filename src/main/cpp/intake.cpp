@@ -2,7 +2,7 @@
 #include "units/time.h"
 using namespace frc;
 
-void Intake::intake_run(){
+/*void Intake::intake_run(){
 if(joy1.GetRawButton(1) == true){
     sol1.Set(1);
     sol2.Set(1);
@@ -36,4 +36,30 @@ if(joy1.GetRawButton(4) == true){
         stage = 0;
         }
     }
+}
+*/
+
+void Intake::PistonUp() {
+    sol1.Set(1);
+    sol2.Set(1);
+}
+
+void Intake::PistonDown() {
+    sol1.Set(0);
+    sol2.Set(0);
+}
+
+void Intake::RunIntake() {
+    t1.Set(ControlMode::PercentOutput, intake1);
+    if(t1.GetOutputCurrent() > 10){
+       intake1 *= -1;
+       time1.Start();
+    }
+    if(time1.HasElapsed(units::second_t (0.5))){
+    intake1 *= -1;
+    }
+}
+
+void Intake::StopIntake() {
+    t1.Set(ControlMode::PercentOutput, 0);
 }

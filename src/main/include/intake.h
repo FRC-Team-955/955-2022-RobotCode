@@ -7,14 +7,17 @@
 using namespace frc;
 
 class Intake{
-    public:
-Intake(){
-    t1.TalonSRX::ConfigPeakCurrentLimit(40);
-    t1.TalonSRX::EnableCurrentLimit(true);
-}
-void intake_run();
-
-    private:
+public:
+    Intake(){
+        t1.TalonSRX::ConfigPeakCurrentLimit(40);
+        t1.TalonSRX::EnableCurrentLimit(true);
+    }
+    void intake_run();
+    void PistonUp();
+    void PistonDown();
+    void RunIntake();
+    void StopIntake();
+private:
     int stage = 0;
     float intake1 = 0.3;
     Timer time1{};
