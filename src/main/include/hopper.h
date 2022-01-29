@@ -1,6 +1,5 @@
 #ifndef HOPPER
 #define HOPPER
-#include <ctre/Phoenix.h>
 #include "settings.h"
 #include <algorithm>
 using namespace frc;
@@ -16,8 +15,8 @@ class Hopper{
         int max = 1;
         void Run_Hopper_Motor(int hopper_motor_percent_top, int hopper_motor_percent_bottom);
     private:
-        TalonSRX talon_hopper_top{MechanismConst::khopper_motor_number1};
-        TalonSRX talon_hopper_bottom{MechanismConst::khopper_motor_number2};
+        TalonSRX talon_hopper_top{MechanismConst::khopper_motor_top_port};
+        TalonSRX talon_hopper_bottom{MechanismConst::khopper_motor_bottom_port};
 };
 
 #endif
