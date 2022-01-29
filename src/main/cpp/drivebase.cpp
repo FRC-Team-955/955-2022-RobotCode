@@ -23,20 +23,19 @@ void DriveBase::Drive() {
   // m_pidController.SetReference(rotations, rev::ControlType::kPosition);
 }
 
-void DriveBase::DriveBaseAmp(int amp1, int amp2, int amp3, int amp4) {
-  amp1 = m_leftLeadMotor.GetOutputCurrent(); 
-  amp2 = m_leftFollowMotor.GetOutputCurrent();
-  amp3 = m_rightLeadMotor.GetOutputCurrent();
-  amp4 = m_rightFollowMotor.GetOutputCurrent(); 
+std::array<double,4> DriveBase::DriveBaseAmp() {
+  return {
+  m_leftLeadMotor.GetOutputCurrent(),m_leftFollowMotor.GetOutputCurrent(),
+  m_rightLeadMotor.GetOutputCurrent(),m_rightFollowMotor.GetOutputCurrent()} ; 
 }
 
-void DriveBase::DriveBaseSpeed(int speedleft, int speedright, double number) {
-  number = 2*3.14159*0.1016/609; 
-  m_leftLeadMotor.SetVelocityConversionFactor(number);
-  GetVelocityConversionFactor();
-  speedleft= GetVelocity();
-  m_rightLeadMotor.SetVelocityConversionFactor(number)
-  GetVelocityConversionFactor();
-  speedright = GetVelocity(); 
+// void DriveBase::DriveBaseSpeed(int speedleft, int speedright, double number) {
+//   number = 2*3.14159*0.1016/609; 
+//   m_leftLeadMotor.SetVelocityConversionFactor(number);
+//   GetVelocityConversionFactor();
+//   speedleft= GetVelocity();
+//   m_rightLeadMotor.SetVelocityConversionFactor(number)
+//   GetVelocityConversionFactor();
+//   speedright = GetVelocity(); 
 
-}
+// }

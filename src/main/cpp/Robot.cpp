@@ -7,6 +7,7 @@
 #include "ctre/Phoenix.h"
 #include <cameraserver/CameraServer.h>
 
+
 #include "colorsensor.h"
 #include "drivebase.h"
 
@@ -19,17 +20,24 @@ DriveBase *drivebase;
 ColorSensor *color_sensor;
 
 void Robot::RobotInit() {
-  frc::Shuffleboard::GetTab("Auto");
+
   frc::CameraServer::GetInstance()->StartAutomaticCapture();
 }
 void Robot::RobotPeriodic() {}
 void Robot::AutonomousInit() {}
 void Robot::AutonomousPeriodic() {}
 void Robot::TeleopInit() {
+  Shuffleboard::SelectTab("Telop");
   drivebase = new DriveBase();
   color_sensor = new ColorSensor();
 }
-void Robot::TeleopPeriodic() { drivebase->Drive(); }
+void Robot::TeleopPeriodic() { 
+
+
+
+  drivebase->Drive();
+
+ }
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
 void Robot::TestInit() {}
