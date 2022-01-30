@@ -1,31 +1,32 @@
 #ifndef INTAKE
 #define INTAKE
-#include <frc/Solenoid.h>
-#include <frc/Joystick.h>
 #include <ctre/Phoenix.h>
+#include <frc/Joystick.h>
+#include <frc/Solenoid.h>
 #include <frc/Timer.h>
+
 using namespace frc;
 
-class Intake{
+class Intake {
 public:
-    Intake(){
-        t1.TalonSRX::ConfigPeakCurrentLimit(40);
-        t1.TalonSRX::EnableCurrentLimit(true);
-    }
-    void intake_run();
-    void PistonUp();
-    void PistonDown();
-    void RunIntake();
-    void StopIntake();
-private:
-    int stage = 0;
-    float intake1 = 0.3;
-    Timer time1{};
-    Joystick joy1{1};
-    TalonSRX t1{2};
-    Solenoid sol1{PneumaticsModuleType::CTREPCM , 0};
-    Solenoid sol2{PneumaticsModuleType::CTREPCM , 1};
-};
+  Intake() {
+    intake_talon.TalonSRX::ConfigPeakCurrentLimit(40);
+    intake_talon.TalonSRX::EnableCurrentLimit(true);
+  }
+  void intake_run();
+  void PistonUp();
+  void PistonDown();
+  void RunIntake();
+  void StopIntake();
 
+private:
+  int stage = 0;
+  float intake_percent = 0.3;
+  Timer timer{};
+  Joystick joy1{1};
+  TalonSRX intake_talon{2};
+  Solenoid sol1{PneumaticsModuleType::CTREPCM, 0};
+  Solenoid sol2{PneumaticsModuleType::CTREPCM, 1};
+};
 
 #endif

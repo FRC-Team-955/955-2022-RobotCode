@@ -6,33 +6,33 @@ using namespace frc;
 if(joy1.GetRawButton(1) == true){
     sol1.Set(1);
     sol2.Set(1);
-} 
+}
 else if(joy1.GetRawButton(2) == true){
     sol1.Set(0);
     sol2.Set(0);
 }
 
 if(joy1.GetRawButton(3) == true){
-    t1.Set(ControlMode::PercentOutput, intake1);
-    if(t1.GetOutputCurrent() > 10){
-       intake1 = !intake1;
-       time1.Start();
+    intake_talon.Set(ControlMode::PercentOutput, intake_percent);
+    if(intake_talon.GetOutputCurrent() > 10){
+       intake_percent = !intake_percent;
+       timer.Start();
     }
-    if(time1.HasElapsed(units::second_t (0.5))){
-    intake1 = !intake1;
+    if(timer.HasElapsed(units::second_t (0.5))){
+    intake_percent = !intake_percent;
     }
 }
 else if(joy1.GetRawButton(3) == false){
-    t1.Set(ControlMode::PercentOutput, 0);
+    intake_talon.Set(ControlMode::PercentOutput, 0);
 }
 if(joy1.GetRawButton(4) == true){
-    t1.Set(ControlMode::PercentOutput, .1);
-    time1.Start();
+    intake_talon.Set(ControlMode::PercentOutput, .1);
+    timer.Start();
     stage++;
 }   if(stage == 1){
-        if(time1.HasElapsed(units::second_t (2))){
-        t1.Set(ControlMode::PercentOutput, 0);
-        time1.Reset();
+        if(timer.HasElapsed(units::second_t (2))){
+        intake_talon.Set(ControlMode::PercentOutput, 0);
+        timer.Reset();
         stage = 0;
         }
     }
@@ -40,26 +40,24 @@ if(joy1.GetRawButton(4) == true){
 */
 
 void Intake::PistonUp() {
-    sol1.Set(1);
-    sol2.Set(1);
+  sol1.Set(1);
+  sol2.Set(1);
 }
 
 void Intake::PistonDown() {
-    sol1.Set(0);
-    sol2.Set(0);
+  sol1.Set(0);
+  sol2.Set(0);
 }
 
 void Intake::RunIntake() {
-    t1.Set(ControlMode::PercentOutput, intake1);
-    if(t1.GetOutputCurrent() > 10){
-       intake1 *= -1;
-       time1.Start();
-    }
-    if(time1.HasElapsed(units::second_t (0.5))){
-    intake1 *= -1;
-    }
+  intake_talon.Set(ControlMode::PercentOutput, intake_percent);
+  if (intake_talon.GetOutputCurrent() > 10) {
+    intake_percent *= -1;
+    timer.Start();
+  }
+  if (timer.HasElapsed(units::second_t(0.5))) {
+    intake_percent *= -1;
+  }
 }
 
-void Intake::StopIntake() {
-    t1.Set(ControlMode::PercentOutput, 0);
-}
+void Intake::StopIntake() { intake_talon.Set(ControlMode::PercentOutput, 0); }
