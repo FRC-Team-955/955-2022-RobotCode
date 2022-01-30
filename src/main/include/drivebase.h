@@ -5,11 +5,14 @@
 #include "rev/CANSparkMax.h"
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
-#include <frc/shuffleboard/Shuffleboard.h>
 #include "rev/CANSparkMax.h"
 #include "settings.h"
-#include <array>
 
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+
+
+using namespace std; 
 using namespace rev;
 
 class DriveBase {
@@ -19,7 +22,7 @@ public:
     m_leftFollowMotor.Follow(m_leftLeadMotor);
   };
   void Drive();
-  std::array<double,4> DriveBaseAmp();
+  void DisplayDriveInfo();
   // void DriveBaseSpeed(int speedleft, int speedright, double number);
 
 private:

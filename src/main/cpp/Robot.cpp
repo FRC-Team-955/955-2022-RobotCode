@@ -7,10 +7,11 @@
 #include "ctre/Phoenix.h"
 #include <cameraserver/CameraServer.h>
 
+#include <frc/smartdashboard/SendableChooser.h>
 
 #include "colorsensor.h"
 #include "drivebase.h"
-
+// #include "feedbacksystem.h"
 
 using namespace frc;
 
@@ -18,24 +19,39 @@ Joystick *joystick;
 
 DriveBase *drivebase;
 ColorSensor *color_sensor;
+frc::SendableChooser<std::string> m_positionChooser;
 
 void Robot::RobotInit() {
-
+  drivebase = new DriveBase();
+  color_sensor = new ColorSensor();
   frc::CameraServer::GetInstance()->StartAutomaticCapture();
+
+  frc::ShuffleboardTab& tabpre = Shuffleboard::GetTab("Pre");
+  frc::ShuffleboardTab& tabauto = Shuffleboard::GetTab("Auto");
+  frc::ShuffleboardTab& tabtelop = Shuffleboard::GetTab("Telop");
+  frc::ShuffleboardTab& tableend = Shuffleboard::GetTab("End Game");
+
+  m_positionChooser.AddOption("Left","Left");
+  m_positionChooser.AddOption("Right","Right");
+  m_positionChooser.AddOption("Middle","Middle");
+
+  tabpre.Add("Robot Position", m_positionChooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
+
+  
 }
 void Robot::RobotPeriodic() {}
-void Robot::AutonomousInit() {}
+void Robot::AutonomousInit() {
+  Shuffleboard::SelectTab("Auto");
+  // m_autoposition  = Shuffleboard::GetTab("Pre").Add
+}
 void Robot::AutonomousPeriodic() {}
 void Robot::TeleopInit() {
   Shuffleboard::SelectTab("Telop");
-  drivebase = new DriveBase();
-  color_sensor = new ColorSensor();
+
 }
 void Robot::TeleopPeriodic() { 
-
-
-
   drivebase->Drive();
+  drivebase->DisplayDriveInfo();
 
  }
 void Robot::DisabledInit() {}

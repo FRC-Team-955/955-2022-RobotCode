@@ -1,6 +1,5 @@
 #include "elevator.h"
-#include "shuffleboard.h" 
-#include <frc/shuffleboard/Shuffleboard.h>
+
 using namespace frc;
 
 void Elevator::ElevatorMove(int joystick_position) {
@@ -35,21 +34,15 @@ void Elevator::LockElevator() {
 
 void Elevator::UnlockElevator() { solenoid0.Set(0); }
 
-void Elevator::ElevatorAmp(int amp) {
-  amp = elevator_motor.GetOutputCurrent();
+
+void Elevator::DisplayElevatorInfo(){
+  frc::Shuffleboard::GetTab("End Game").Add("Elevator Amp", elevator_motor.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("End Game").Add("Elevator Position", elevator_motor.GetSelectedSensorPosition(0));
+  frc::Shuffleboard::GetTab("End Game").Add("Elevator Pnemactic State",solenoid0.Get());
+// .WithWidget("Toggle Button").GetEntry()
+
 }
 
-void Elevator::ElevatorPosition(int position) {
-  position = elevator_motor.GetSelectedSensorPosition(0);
-}
-
-void Elevator::ElevatorPneumaticState(int pneumatic) {
-  pneumatic = solenoid0.Get(); 
-  string f; 
-  f = "Hi";
-  frc::Shuffleboard::GetTab("Auto");
-  Shuffleboard::GetTab(f);
-}
 
 
 

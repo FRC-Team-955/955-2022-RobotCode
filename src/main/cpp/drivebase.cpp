@@ -1,5 +1,4 @@
 #include "drivebase.h"
-#include <frc/smartdashboard/SmartDashboard.h>
 
 void DriveBase::Drive() {
   bool isQuickTurn = joystick.GetRawButton(Joy0Const::kquick_turn_button);
@@ -23,10 +22,12 @@ void DriveBase::Drive() {
   // m_pidController.SetReference(rotations, rev::ControlType::kPosition);
 }
 
-std::array<double,4> DriveBase::DriveBaseAmp() {
-  return {
-  m_leftLeadMotor.GetOutputCurrent(),m_leftFollowMotor.GetOutputCurrent(),
-  m_rightLeadMotor.GetOutputCurrent(),m_rightFollowMotor.GetOutputCurrent()} ; 
+void DriveBase::DisplayDriveInfo() {
+  frc::Shuffleboard::GetTab("Telop").Add("LeftLeadAmps", m_leftLeadMotor.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("Telop").Add("leftFollowMotor", m_leftFollowMotor.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("Telop").Add("rightLeadMotor",m_rightLeadMotor.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("Telop").Add("rightFollowMotor", m_rightFollowMotor.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("Telop").Add("Reverse Drive", ReverseDrive);
 }
 
 // void DriveBase::DriveBaseSpeed(int speedleft, int speedright, double number) {
