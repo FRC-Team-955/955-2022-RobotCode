@@ -1,5 +1,4 @@
 #include "elevator.h"
-using namespace rev;
 using namespace frc;
 void Elevator::ElevatorMove(int joystick_position)
 {
@@ -7,6 +6,11 @@ if(bot_switch == 0 && joystick_position < 0)
 {
     elevator_motor.Set(ControlMode::PercentOutput, 0);
 }
+if(limit_switch_bottom.Get() == 1 && bot_switch == 0) 
+{
+    bot_switch == 1;
+}
+
 
 if(solenoid0.Get() == 1)
 {
