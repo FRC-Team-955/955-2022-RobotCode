@@ -6,7 +6,9 @@ constexpr int kdrive_speed_axis = 1;
 constexpr int kdrive_curvature_axis = 1;
 } // namespace Joy0Const
 
-namespace Joy1Const {}
+namespace Joy1Const {
+constexpr int elevator_slow_multiplier = 0.5;
+}
 
 namespace SensorConst {
 constexpr int kbreak_beam_port = 0;
@@ -23,6 +25,7 @@ constexpr int kright_follow_neo_number = 5;
 
 namespace MechanismConst {
 constexpr int kelevator_motor_port = 6;
+constexpr int climb_amperage = 10;
 }
 
 namespace AutoConst {}

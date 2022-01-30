@@ -6,9 +6,10 @@ if(bot_switch == 0 && joystick_position < 0)
 {
     elevator_motor.Set(ControlMode::PercentOutput, 0);
 }
-if(limit_switch_bottom.Get() == 1 && bot_switch == 0) 
+else if(limit_switch_bottom.Get() == 1 && bot_switch == 0) 
 {
     bot_switch == 1;
+    elevator_motor.SetSelectedSensorPosition(0);
 }
 
 
@@ -34,11 +35,25 @@ else if(limit_switch_bottom.Get() == 1 && joystick_position > 0)
 }
 else if(elevator_motor.GetSelectedSensorPosition() > 4000)
 {
-    elevator_motor.Set(ControlMode::PercentOutput, joystick_position * 0.5 );
+    if(joystick_position > 0)
+    {
+        elevator_motor.Set(ControlMode::PercentOutput, joystick_position * Joy1Const::elevator_slow_multiplier );
+    }
+    else
+    {
+       elevator_motor.Set(ControlMode::PercentOutput, joystick_position); 
+    }
 }
-else if(elevator_motor.GetSelectedSensorPosition() < 1000)
+else if(elevator_motor.GetSelectedSensorPosition() < 1000 && joystick_position < 0)
 {
-    elevator_motor.Set(ControlMode::PercentOutput, joystick_position * 0.5 );
+     if(joystick_position < 0)
+    {
+        elevator_motor.Set(ControlMode::PercentOutput, joystick_position * Joy1Const::elevator_slow_multiplier );
+    }
+    else
+    {
+       elevator_motor.Set(ControlMode::PercentOutput, joystick_position); 
+    }
 }
 else if(elevator_motor.GetSelectedSensorPosition() < 4000 && elevator_motor.GetSelectedSensorPosition() > 1000 )    
 {
@@ -55,6 +70,18 @@ void Elevator::LockElevator()
 void Elevator::UnlockElevator()
 {
     solenoid0.Set(0);
+}
+
+bool Elevator::OffGround()
+{
+    if(elevator_motor.GetOutputCurrent() >= MechanismConst::climb_amperage)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 

@@ -18,6 +18,7 @@ public:
   void ElevatorMove(int joystick_position);
   void LockElevator();
   void UnlockElevator();
+  bool OffGround();
 
 
 private:
