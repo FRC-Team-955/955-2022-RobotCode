@@ -21,20 +21,28 @@ DriveBase *drivebase;
 
 Auto * bryanauto;
 
-std::string color[2] = { "Blue", "Red"};
 
-//the position you are at, at the start of the game
-std::string position =0;
+#include <frc/Filesystem.h>
+#include <frc/trajectory/TrajectoryUtil.h>
+#include <wpi/fs.h>
+
+frc::Trajectory trajectory;
+
+// std::string color[2] = { "Blue", "Red"};
+
+// //the position you are at, at the start of the game
+// std::string position =0;
 int state = 0;
-std::string test = "okay";
+// std::string test = "okay";
 
 void Robot::RobotInit() {
-  frc::Shuffleboard::GetTab("Auto");
-  frc::Shuffleboard::GetTab("Telop");
-  frc::Shuffleboard::GetTab("End Game");
 
-  frc::Shuffleboard::SelectTab(0);
-  frc::SmartDashboard::SetDefaultStringArray("Team Color",color);
+  // frc::Shuffleboard::GetTab("Auto");
+  // frc::Shuffleboard::GetTab("Telop");
+  // frc::Shuffleboard::GetTab("End Game");
+
+  // frc::Shuffleboard::SelectTab(0);
+  // frc::SmartDashboard::SetDefaultStringArray("Team Color",color);
   
 
 }
@@ -43,9 +51,22 @@ void Robot::RobotPeriodic() {}
 void Robot::AutonomousInit() {
   state = 0;
 
+  fs::path deployDirectory = frc::filesystem::GetDeployDirectory();
+  deployDirectory = deployDirectory / "Unnamed.wpilib.json";
+  trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory.string());
 
 }
+
 void Robot::AutonomousPeriodic() {
+  if(state == 0){
+    bryanauto->SetTrajectory(trajectory);
+    bryanauto-> Start();
+    state == 1;
+  }else if(state == 1){
+    if(bryanauto -> RunRamsete()){
+      state = 2;
+    }
+
   // if(state == 0){
   //   bryanauto->SetTrajectory(trajectory_toshoot);
   //   bryanauto-> Start();
@@ -63,13 +84,16 @@ void Robot::AutonomousPeriodic() {
   //     state=4;
   //   }
   // }
+  }
 }
 
 void Robot::TeleopInit() {
-  drivebase = new DriveBase();
-  frc::CameraServer::GetInstance()->StartAutomaticCapture();
+  // drivebase = new DriveBase();
+  // frc::CameraServer::GetInstance()->StartAutomaticCapture();
 }
-void Robot::TeleopPeriodic() { drivebase->Drive(); }
+void Robot::TeleopPeriodic() { 
+  // drivebase->Drive();
+}
 
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
