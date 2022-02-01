@@ -15,6 +15,8 @@ public:
   DriveBase() {
     m_rightFollowMotor.Follow(m_rightLeadMotor);
     m_leftFollowMotor.Follow(m_leftLeadMotor);
+    m_leftLeadMotor.SetInverted(DriveConst::kleft_lead_is_inverted);
+    m_rightLeadMotor.SetInverted(DriveConst::kright_lead_is_inverted);
   };
   void Drive();
 
