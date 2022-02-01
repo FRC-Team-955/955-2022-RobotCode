@@ -3,16 +3,24 @@
 
 #include <iostream>
 #include "ctre/Phoenix.h"
-#include "frc/Joystick.h"
-
+#include "rev/CANSparkMax.h"
 using namespace frc;
 
 class Shooter {
-  Shooter() {}
+    Shooter(){
+        shooterneo_lead.SetSmartCurrentLimit(40); 
+        shooterneo_follow.SetSmartCurrentLimit(40);
+        }
+    public:
+    float ShootAtVelocity(int velocity);
+    void ShootPercentOutput(int percent);
+    void IndependentControl(int leadvelocity, int followvelocity);
 
-public:
-  float ShootAtVelocity(int velocity);
-  void ShootPercentOutput(int percent);
+
+    private:
+    CANSparkMax shooterneo_lead {DriveConst::kright_lead_neo_number, CANSparkMax::MotorType::kBrushless};
+    CANSparkMax shooterneo_follow {DriveConst::kright_lead_neo_number, CANSparkMax::MotorType::kBrushless};
+
 
 private:
   TalonSRX shooter_talon{1};
