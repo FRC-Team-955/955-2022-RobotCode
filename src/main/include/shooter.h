@@ -18,6 +18,8 @@ public:
   void ShooterAmp(int amp);
 void ShooterVelocity(int velocity);
 
+  void DisplayShooterInfo();
+
 private:
   TalonSRX shooter_talon{MechanismConst::kshooter_talon_port};
 };

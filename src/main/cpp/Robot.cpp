@@ -41,12 +41,14 @@ void Robot::RobotInit() {
   m_positionChooser.AddOption("Middle","Middle");
 
   tabpre.Add("Robot Position", m_positionChooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
+  
+  Shuffleboard::SelectTab("Pre");
 
   
 }
 void Robot::RobotPeriodic() {}
 void Robot::AutonomousInit() {
-  Shuffleboard::SelectTab("Auto");
+  // m_autoposition  = Shuffleboard::GetTab("Pre").Add
 }
 void Robot::AutonomousPeriodic() {}
 void Robot::TeleopInit() {
