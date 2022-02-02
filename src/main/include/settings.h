@@ -16,6 +16,7 @@ constexpr int limit_switch_bottom_port = 2;
 // value at which color sensor proximity will return there is a ball 0(far away)
 // - 2047(close as possible)
 constexpr int kvalue_for_ball = 2000;
+constexpr int analogpin_for_hypersonic_sensor = 0; 
 } // namespace SensorConst
 
 namespace DriveConst {

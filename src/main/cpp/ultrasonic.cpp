@@ -1,8 +1,19 @@
 #include <frc/AnalogInput.h>
 #include <ultrasonic.h> 
+#include <iostream> 
 using namespace frc; 
 
-void UltraSonic::SonicDistance() {
+double UltraSonic::SonicDistance(std::string passin) {
 double rawValue = ultrasonic.GetValue();
-double currentDistanceInches = rawValue*0.0492;
+
+if (passin == "in")
+{
+return rawValue*0.0492;
+}
+
+if (passin == "cm")
+{
+return rawValue*0.125;
+}
+
 }
