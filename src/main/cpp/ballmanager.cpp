@@ -12,12 +12,12 @@ void BallManager::CheckHopperState()
     {
         position[0] = color_sensor.ClosestColor();
     }
-    if(!break_beam.BeamBroken() && !color_sensor.CheckForBall() && position[0] != "NULL")
+    if(!ultrasonic.SonicDistance("in") <= 3 && !color_sensor.CheckForBall() && position[0] != "NULL")
     {
         inbetween = position[0];
         position[0] = "NULL";
     }
-    if(break_beam.BeamBroken())
+    if(ultrasonic.SonicDistance("in") <= 3)
     {
         position[1] = inbetween;
     }
@@ -25,7 +25,7 @@ void BallManager::CheckHopperState()
 
 void BallManager::MoveIndex()
 {
-    if(!break_beam.BeamBroken() && position[0] != "NULL")
+    if(!ultrasonic.SonicDistance("in") <= 3 && position[0] != "NULL")
     {
         hopper.RunHopperMotor(0.5, 0.5);
     }
@@ -37,7 +37,7 @@ void BallManager::LoadHopper()
     {
         hopper.RunHopperMotor(0.5, 0.5);
     }
-    else if(break_beam.BeamBroken() && !color_sensor.CheckForBall())
+    else if(ultrasonic.SonicDistance("in") <= 3 && !color_sensor.CheckForBall())
     {
         hopper.RunHopperMotor(0, 0.5);
     }

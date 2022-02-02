@@ -12,6 +12,7 @@ using namespace frc;
 #include "colorsensor.h"
 #include "hopper.h"
 #include "shooter.h"
+#include "ultrasonic.h"
 
 class BallManager {
 public:
