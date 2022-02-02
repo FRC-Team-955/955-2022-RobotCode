@@ -1,10 +1,9 @@
 #ifndef BALLDETECT
 #define BALLDETECT
 
-
+#include <iostream>
 #include "photonlib/PhotonUtils.h"
 #include "photonlib/PhotonCamera.h"
-#include <iostream>
 
 class BallDetect{
 		public:
