@@ -4,6 +4,7 @@
 #include <frc/Joystick.h>
 #include <frc/Solenoid.h>
 #include <frc/Timer.h>
+#include "settings.h"
 
 using namespace frc;
 
@@ -13,15 +14,14 @@ public:
     intake_talon.TalonSRX::ConfigPeakCurrentLimit(40);
     intake_talon.TalonSRX::EnableCurrentLimit(true);
   }
-  void intake_run();
+
   void PistonUp();
   void PistonDown();
-  void RunIntake();
+  void RunIntake(float intake_percent);
   void StopIntake();
 
 private:
   int stage = 0;
-  float intake_percent = 0.3;
   Timer timer{};
   Joystick joy1{1};
   TalonSRX intake_talon{2};
