@@ -1,17 +1,18 @@
 #ifndef ULTRASONIC
 #define ULTRASONIC
+
+#include <string>
 #include <frc/AnalogInput.h>
 #include "settings.h"
-#include <string> 
-using namespace frc; 
-using namespace SensorConst;
 
+using namespace frc;
 
 class UltraSonic {
-public: 
-double SonicDistance(std::string passin);
-AnalogInput ultrasonic{analogpin_for_hypersonic_sensor};
-private:
+public:
+  double SonicDistance(std::string passin);
+  AnalogInput ultrasonic{SensorConst::kultrasonic_port};
 
-}; 
+private:
+    double raw_value = 100;
+};
 #endif
