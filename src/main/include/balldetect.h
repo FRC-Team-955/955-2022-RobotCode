@@ -17,7 +17,7 @@ class BallDetect{
 			
 
 	    private:
-          bool BallDetected;
+         
 		 
 
 

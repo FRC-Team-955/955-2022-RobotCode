@@ -3,15 +3,15 @@
 
 double BallDetect::BallDetectorX(photonlib::PhotonPipelineResult result){
 
-if (result.HasTargets()) {
-  
-    return result.GetBestTarget().GetYaw();
- 
-} else {
+    if (result.HasTargets()) {
+    
+        return result.GetBestTarget().GetYaw();
+    
+    } else {
 
-return 0;
 
-}
+
+    }
 
 	
 
