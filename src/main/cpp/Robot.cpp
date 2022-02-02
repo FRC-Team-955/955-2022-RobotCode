@@ -71,7 +71,7 @@ void Robot::AutonomousPeriodic() {
   }else if(state == 1){
     if(bryanauto -> RunRamsete()){
       state = 2;
-      std::cout<<"done"<<std::endl;
+      std::cout<<"it run"<<std::endl;
     }
 
   // if(state == 0){
