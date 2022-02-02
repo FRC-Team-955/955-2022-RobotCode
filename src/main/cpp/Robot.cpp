@@ -36,6 +36,14 @@ int state = 0;
 // std::string test = "okay";
 
 void Robot::RobotInit() {
+  std::cout<<"robotinti"<<std::endl;
+  
+  fs::path deployDirectory = frc::filesystem::GetDeployDirectory();
+  deployDirectory = deployDirectory / "Unnamed.wpilib.json";
+  trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory.string());
+
+
+
 
   // frc::Shuffleboard::GetTab("Auto");
   // frc::Shuffleboard::GetTab("Telop");
@@ -50,10 +58,7 @@ void Robot::RobotPeriodic() {}
 
 void Robot::AutonomousInit() {
   state = 0;
-
-  fs::path deployDirectory = frc::filesystem::GetDeployDirectory();
-  deployDirectory = deployDirectory / "Unnamed.wpilib.json";
-  trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory.string());
+  std::cout<<"autoinit"<<std::endl;
 
 }
 
@@ -61,10 +66,12 @@ void Robot::AutonomousPeriodic() {
   if(state == 0){
     bryanauto->SetTrajectory(trajectory);
     bryanauto-> Start();
+    std::cout<<"start"<<std::endl;
     state == 1;
   }else if(state == 1){
     if(bryanauto -> RunRamsete()){
       state = 2;
+      std::cout<<"done"<<std::endl;
     }
 
   // if(state == 0){
