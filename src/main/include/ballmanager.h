@@ -23,6 +23,9 @@ public:
   bool IsEmpty();
   void LoadHopper();
   void Reject();
+  int motor_velocity = 0;
+  int target_velocity = 0;
+  int range = 0;
   
 
 

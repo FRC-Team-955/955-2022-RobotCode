@@ -27,7 +27,7 @@ void BallManager::MoveIndex()
 {
     if(!break_beam.BeamBroken() && position[0] != "NULL")
     {
-        hopper.RunHopperMotor(0.5, 0);
+        hopper.RunHopperMotor(0.5, 0.5);
     }
 }
 
@@ -37,7 +37,7 @@ void BallManager::LoadHopper()
     {
         hopper.RunHopperMotor(0.5, 0.5);
     }
-    if(break_beam.BeamBroken() && !color_sensor.CheckForBall())
+    else if(break_beam.BeamBroken() && !color_sensor.CheckForBall())
     {
         hopper.RunHopperMotor(0, 0.5);
     }
@@ -55,23 +55,20 @@ bool BallManager::IsEmpty()
 
 void BallManager::Shoot()
 {
-    if(shooter.ShootAtVelocity(10000) >= 1000 && position[1] == team_color)
+    if(shooter.ShootAtVelocity(motor_velocity) >= target_velocity - range && shooter.ShootAtVelocity(motor_velocity) <= target_velocity + range && position[1] == team_color)
     {
-        shooter.ShootAtVelocity(1000);
         position[1] = "NULL";
     }
 }
 
 void BallManager::Reject()
 {
-    if(shooter.ShootAtVelocity(10000) >= 100 && position[1] != team_color)
+    if(shooter.ShootAtVelocity(MechanismConst::kreject_velocity) >= MechanismConst::kreject_target - range  && shooter.ShootAtVelocity(MechanismConst::kreject_velocity) <= MechanismConst::kreject_target + range && position[1] != team_color)
     {
-        shooter.ShootAtVelocity(100);
         position[1] = "NULL";
     }
     if(position[0] != team_color)
     {
         hopper.RunHopperMotor(0, -0.5);
-        hopper.RunHopperMotor(0, 0.5);
     }
 }
