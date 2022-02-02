@@ -12,6 +12,9 @@ public:
   void HopperAmp(int amp1, int amp2);
   void HopperBall(int color, int location);
   void BreakBeam(int read);
+
+  void DiplayHopperInfo();
+  
   int max_percent = 1;
 private: 
   TalonSRX talon_hopper_top{MechanismConst::khopper_motor_top_port};

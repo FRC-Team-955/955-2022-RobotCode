@@ -6,6 +6,7 @@
 #include <frc/util/Color.h>
 #include <iostream>
 
+#include <frc/shuffleboard/Shuffleboard.h>
 
 #include "settings.h"
 
@@ -28,6 +29,8 @@ public:
   frc::Color GetColor();
 
   bool CheckForBall();
+
+  void DisplayColorInfo();
 
 private:
   ColorSensorV3 *rev_color_sensor;
