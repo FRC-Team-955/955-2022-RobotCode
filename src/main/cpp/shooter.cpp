@@ -2,20 +2,24 @@
 using namespace rev;
 
 float Shooter::ShootAtVelocity(int velocity) {
-    shooterneo_lead.rev(ControlMode::Velocity, velocity);
-    CANSparkMax::Follow(const shooterneo_lead);
+    double SetPoint = 0.0;
+    m_pidController.SetReference(SetPoint, rev::ControlType::kVelocity);
+    shooterneo_follow.Follow(shooterneo_lead);
 
-    return shootertalon_lead.GetSelectedSensorVelocity(0);
+    return shooterneo_lead.GetVelocity();
+
 }
 
 void Shooter::ShootPercentOutput(int percent){
-    shootertalon_lead.Set(percent);
+    shooterneo_lead.Set(percent);
 }
 
 void IndependentControl(int leadvelocity, int followvelocity){
+    double SetPoint = 0.0;
     CANSparkMax::kFollowerDisabled;
-    //shooterneo_lead.rev(ControlMode::Velocity, velocity)
-    //shooterneo_follow.rev(ControlMode::Velocity, velocity)
+    m_pidController.SetReference(SetPoint, rev::ControlType::kVelocity);
+    m_pidController2.SetReference(SetPoint, rev::ControlType::kVelocity);
+
 }
 
 
