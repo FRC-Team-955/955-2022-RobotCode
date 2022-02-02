@@ -61,10 +61,12 @@ void Robot::AutonomousPeriodic() {
   if(state == 0){
     bryanauto->SetTrajectory(trajectory);
     bryanauto-> Start();
+    std::cout<<"start"<<std::endl;
     state == 1;
   }else if(state == 1){
     if(bryanauto -> RunRamsete()){
       state = 2;
+      std::cout<<"it run"<<std::endl;
     }
 
   // if(state == 0){
