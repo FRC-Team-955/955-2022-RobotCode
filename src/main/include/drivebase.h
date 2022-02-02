@@ -5,7 +5,7 @@
 #include "rev/CANSparkMax.h"
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
-
+#include "balldetect.h"
 #include "settings.h"
 
 using namespace rev;
@@ -18,7 +18,8 @@ public:
     m_leftLeadMotor.SetInverted(DriveConst::kleft_lead_is_inverted);
     m_rightLeadMotor.SetInverted(DriveConst::kright_lead_is_inverted);
   };
-  void Drive();
+  void Drive(photonlib::PhotonPipelineResult result);
+  BallDetect ball_detector;
 
 private:
   CANSparkMax m_leftLeadMotor{DriveConst::kleft_lead_neo_number,
@@ -35,5 +36,7 @@ private:
   frc::Joystick joystick{0};
 
   bool ReverseDrive = false;
+  bool BallAimbot = false;
+  
 };
 #endif
