@@ -31,11 +31,13 @@ constexpr bool kright_lead_is_inverted = true;
 namespace MechanismConst {
 constexpr int khopper_motor_top_port = 1;
 constexpr int khopper_motor_bottom_port = 2;
-constexpr int kelevator_motor_port = 6;
-constexpr int kelevator_pnumatic_port = 0;
 constexpr int kshooter_talon_port = 8;
 constexpr float kcompressor_warning_pressure = 10;
 constexpr int kvelocity_range = 1;
+constexpr int kelevator_motor_port = 6;
+constexpr int kelevator_pnumatic_port = 0;
+constexpr int climb_amperage = 10;
+constexpr int elevator_slow_multiplier = 0.5;
 }
 
 namespace AutoConst {}
