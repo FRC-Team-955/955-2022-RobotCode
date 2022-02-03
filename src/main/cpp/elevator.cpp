@@ -116,6 +116,12 @@ void Elevator::LockElevator()
     elevator_motor.Set(ControlMode::PercentOutput, 0);
 }
 
+void Elevator::UnlockElevator()
+{
+    solenoid0.Set(0);
+    elevator_motor.Set(ControlMode::PercentOutput, 0);
+}
+
 bool Elevator::OffGround()
 {
     if(elevator_motor.GetOutputCurrent() >= MechanismConst::climb_amperage)
