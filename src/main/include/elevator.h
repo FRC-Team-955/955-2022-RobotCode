@@ -22,7 +22,7 @@ public:
   bool OffGround();
 
 private:
-  bool bot_switch = 0;
+  bool set_up_done = false;
   DigitalInput limit_switch_top{SensorConst::limit_switch_top_port};
   DigitalInput limit_switch_bottom{SensorConst::limit_switch_bottom_port};
   TalonFX elevator_motor{MechanismConst::kelevator_motor_port};
