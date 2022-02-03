@@ -12,13 +12,13 @@ void DriveBase::Drive(photonlib::PhotonPipelineResult result) {
   if (ReverseDrive == false) {
     if (BallAimbot == true){
       m_robotDrive.CurvatureDrive(
-        (joystick.GetRawAxis(Joy0Const::kdrive_speed_axis) + (ball_detector.BallDetectorX(result)/turndiv)),
+        (joystick.GetRawAxis(Joy0Const::kdrive_speed_axis),
         (joystick.GetRawAxis(Joy0Const::kdrive_curvature_axis) + (ball_detector.BallDetectorX(result)/turndiv)), isQuickTurn);
       frc::SmartDashboard::PutBoolean("Reverse Drive", ReverseDrive);
     } else {
       m_robotDrive.CurvatureDrive(
-        (joystick.GetRawAxis(Joy0Const::kdrive_speed_axis) + (ball_detector.BallDetectorX(result)/turndiv)),
-        (joystick.GetRawAxis(Joy0Const::kdrive_curvature_axis) + (ball_detector.BallDetectorX(result)/turndiv)), isQuickTurn);
+        (joystick.GetRawAxis(Joy0Const::kdrive_speed_axis) ,
+        (joystick.GetRawAxis(Joy0Const::kdrive_curvature_axis), isQuickTurn);
       frc::SmartDashboard::PutBoolean("Reverse Drive", ReverseDrive);
     }
    
