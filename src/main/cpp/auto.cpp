@@ -83,15 +83,15 @@ void Auto::Start(){
     //Runs the Auto::Reset which well resets motor direction, encoders,and gyro
     Reset();
     //Starts the timer
-    m_timer.Start();
+    m_timer->Start();
     //resets the Odometry to the initial positions of the trajectory
     ResetOdometry(trajectory.InitialPose());
 }
 
 bool Auto::RunRamsete(){
-    if (m_timer.Get()< trajectory.TotalTime()){
+    if (m_timer->Get()< trajectory.TotalTime()){
         // Get the desired pose at the current time from the trajectory.
-        auto desiredPose = trajectory.Sample(m_timer.Get());
+        auto desiredPose = trajectory.Sample(m_timer->Get());
 
         // Get the reference chassis speeds from the Ramsete Controller with the current position obtained by UpdateOdometry() and the desiredPose.
         auto refChassisSpeeds = ramsetecontroller.Calculate(UpdateOdometry(), desiredPose);
@@ -102,8 +102,8 @@ bool Auto::RunRamsete(){
     }else {
       //stops motors and timer
       Drive(0_mps, 0_rad_per_s);
-      m_timer.Stop();
-      m_timer.Reset();
+      m_timer->Stop();
+      m_timer->Reset();
       return true;
     }
     return false;

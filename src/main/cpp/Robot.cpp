@@ -42,17 +42,12 @@ void Robot::RobotInit() {
   deployDirectory = deployDirectory / "Unnamed.wpilib.json";
   trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory.string());
 
-
-
-
   // frc::Shuffleboard::GetTab("Auto");
   // frc::Shuffleboard::GetTab("Telop");
   // frc::Shuffleboard::GetTab("End Game");
 
   // frc::Shuffleboard::SelectTab(0);
   // frc::SmartDashboard::SetDefaultStringArray("Team Color",color);
-  
-
 }
 void Robot::RobotPeriodic() {}
 
@@ -67,7 +62,7 @@ void Robot::AutonomousPeriodic() {
     bryanauto->SetTrajectory(trajectory);
     bryanauto-> Start();
     std::cout<<"start"<<std::endl;
-    state == 1;
+    state = 1;
   }else if(state == 1){
     if(bryanauto -> RunRamsete()){
       state = 2;

@@ -39,6 +39,7 @@ public:
         m_rightLeadMotor.SetSmartCurrentLimit(40);
         gyro.Reset();
         config.SetKinematics(kinematics);
+        m_timer = new frc::Timer();
     };
     //Resets follow, inversion, encoders, and gyro
     void Reset();
@@ -100,8 +101,7 @@ private:
 
     //has default values of 2.0 and 0.7
     frc::RamseteController ramsetecontroller;
-    frc::Timer m_timer;
 
-
+    frc::Timer *m_timer;
 };
 #endif
