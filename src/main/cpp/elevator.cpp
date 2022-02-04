@@ -2,6 +2,11 @@
 using namespace frc;
 void Elevator::ElevatorMove(int joystick_position)
 {
+
+if(solenoid0.Get() == 1)
+{
+elevator_motor.Set(ControlMode::PercentOutput, 0);
+} else {
     //If elevator is still in the setup phase which is below the bottom limit switch
     if(set_up_done == false)
     {  
@@ -107,6 +112,7 @@ void Elevator::ElevatorMove(int joystick_position)
         {
             elevator_motor.Set(ControlMode::PercentOutput, 0);
         }
+      }
     }
 }
 
