@@ -7,19 +7,26 @@
 #include <ctre/Phoenix.h>
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h" 
+#include "ball_manager.h"
+
 #include "drivebase.h"
 
 using namespace frc;
 
 class XYalign{
     public:
-        XYalign(DriveBase *drivebase):drivebase(drivebase) {};
-            void test();
-            BallManager ball_manage;
+        XYalign(DriveBase *drivebase):drivebase(drivebase) {
+            //change name of table later
+            auto table = nt::NetworkTableInstance::GetDefault().GetTable("photonvision");
+        };
+        void test();
+        bool hasTargetLimeLight();
 
     private:
         DriveBase *drivebase; 
         frc::Joystick joystick{0};
+        BallManager ball_manage;
+
         
 };
 #endif

@@ -1,9 +1,4 @@
 #include "xy_align.h"
-#include "networktables/NetworkTable.h"
-#include "networktables/NetworkTableInstance.h"
-#include "drivebase.h"
-#include "ball_manager.h"
-
 
 using namespace frc;
 
@@ -14,7 +9,6 @@ void XYalign::test()
 
   float min_command = 0.05f;
 
-  auto table = nt::NetworkTableInstance::GetDefault().GetTable("photonvision");
   float targetYaw = table->GetNumber("targetYaw", 0.0);
   float targetPitch = table->GetNumber("targetPitch", 0.0);
 
@@ -23,8 +17,6 @@ void XYalign::test()
   {
     float heading_error =  180 - targetYaw;
     float distance_error = 120 - targetPitch;
-
-
 
     float steering_adjust = 0.0f;
     /*if (tx > 1.0)
@@ -45,4 +37,7 @@ void XYalign::test()
     } 
     drivebase->DriveTank(steering_adjust, -steering_adjust);
   }
+}
+bool XYalign::hasTargetLimeLight(){
+  return table->GetBoolean("hasTarget", false);
 }
