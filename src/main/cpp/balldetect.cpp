@@ -9,7 +9,7 @@ double BallDetect::BallDetectorX(photonlib::PhotonPipelineResult result){
     
     } else {
 
-
+        return 9999999999969;
 
     }
 
