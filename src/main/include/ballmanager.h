@@ -13,21 +13,19 @@ using namespace frc;
 #include "hopper.h"
 #include "shooter.h"
 #include "ultrasonic.h"
+#include "intake.h"
 
 class BallManager {
 public:
   BallManager(){};
   std::string GetHopperState(int position);
-  bool Rev();
+  bool Rev(double target_velocity);
   void MoveIndex();
   void CheckHopperState();
-  bool IsEmpty();
+  bool IsFull();
   void LoadHopper();
   void Reject();
   void Shoot();
-  int motor_velocity = 0;
-  int target_velocity = 0;
-  int range = 0;
   
 
 
@@ -41,5 +39,6 @@ private:
   Hopper hopper;
   Shooter shooter;
   UltraSonic ultrasonic;
+  Intake intake;
 };
 #endif

@@ -29,6 +29,10 @@ void BallManager::CheckHopperState()
         position[1] = inbetween;
         inbetween = "NULL";
     }
+    if(ultrasonic.SonicDistance("in") >3)
+    {
+        position[1] = "Null";
+    }
 }
 
 void BallManager::MoveIndex()
@@ -41,8 +45,7 @@ void BallManager::MoveIndex()
 
 void BallManager::LoadHopper()
 {
-
-    if(ultrasonic.SonicDistance("in") <= 3)
+    if(ultrasonic.SonicDistance("in") > 3)
     {
         hopper.RunHopperMotor(0.5, 0.5);
     }
@@ -52,42 +55,56 @@ void BallManager::LoadHopper()
     }
 }
 
-bool BallManager::IsEmpty()
+bool BallManager::IsFull()
 {
-    if(position[1] == "NULL" && position[0] == "NULL" && inbetween == "NULL"){
-        return 1;
+    if(position[1] !== "NULL" && position[0] !== "NULL"){
+        return !false;
     }
     else{
-        return 0;
+        return false;
     }
 }
 
-bool BallManager::Rev()
-{
-    if(shooter.ShootAtVelocity(motor_velocity) >= target_velocity - range && shooter.ShootAtVelocity(motor_velocity) <= target_velocity + range && position[1] == team_color){
-        return 1;
+bool BallManager::Rev(double target_velocity)
+{   
+    if (position[1] == team_color){
+        if(shooter.ShootAtVelocity(target_velocity, target_velocity) >= target_velocity - MechanismConst::krange_target && shooter.ShootAtVelocity(target_velocity, target_velocity) <= target_velocity + MechanismConst::krange_target){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    else if (position[1] != team_color){
+        if(shooter.ShootAtVelocity(MechanismConst::kreject_target, MechanismConst::kreject_target) >= MechanismConst::kreject_target - MechanismConst::krange_reject  
+        && shooter.ShootAtVelocity(MechanismConst::kreject_target, MechanismConst::kreject_target) <= MechanismConst::kreject_target + MechanismConst::krange_reject){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     else{
-        return 0;
+        return false;
     }
 }
 
 void BallManager::Shoot()
 {
-    if(Rev())
-    {
-        hopper.RunHopperMotor(0.5, 0);
-    }
+    hopper.RunHopperMotor(0.5, 0.5);
 }
 
 void BallManager::Reject()
 {
-    if(shooter.ShootAtVelocity(MechanismConst::kreject_velocity) >= MechanismConst::kreject_target - range  && shooter.ShootAtVelocity(MechanismConst::kreject_velocity) <= MechanismConst::kreject_target + range && position[1] != team_color)
+    if(shooter.ShootAtVelocity(MechanismConst::kreject_target, MechanismConst::kreject_target) >= MechanismConst::kreject_target - MechanismConst::krange_reject && 
+        shooter.ShootAtVelocity(MechanismConst::kreject_target, MechanismConst::kreject_target) <= MechanismConst::kreject_target + MechanismConst::krange_reject && 
+        position[1] != team_color)
     {
         hopper.RunHopperMotor(0.5, 0);
     }
     if(position[0] != team_color)
     {
         hopper.RunHopperMotor(0, -0.5);
+        intake.RunIntake(-0.5)
     }
 }
