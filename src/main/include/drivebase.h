@@ -1,12 +1,12 @@
 #ifndef DRIVEBASE
 #define DRIVEBASE
 
+#include "balldetect.h"
 #include "iostream"
 #include "rev/CANSparkMax.h"
+#include "settings.h"
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
-#include "balldetect.h"
-#include "settings.h"
 
 using namespace rev;
 
@@ -37,6 +37,5 @@ private:
 
   bool ReverseDrive = false;
   bool BallAimbot = false;
-  
 };
 #endif
