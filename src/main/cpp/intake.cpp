@@ -1,5 +1,4 @@
 #include "intake.h"
-#include "units/time.h"
 using namespace frc;
 
 void Intake::PistonUp() {
@@ -16,12 +15,10 @@ void Intake::RunIntake(float intake_percent) {
   intake_talon.Set(ControlMode::PercentOutput, intake_percent);
   if (intake_talon.GetOutputCurrent() > MechanismConst::kintake_reversal_amps) {
     intake_percent *= -1;
-    timer.Start();
-  }
-  if (timer.HasElapsed(units::second_t(MechanismConst::kintake_reversal_time))) {
-    intake_percent *= -1;
-    timer.Reset();
-  }
+    if (intake_talon.GetOutputCurrent() < MechanismConst::kintake_reversal_amps + 10){
+      intake_percent *= 1;
+    }
+}
 }
 
 void Intake::StopIntake() { 

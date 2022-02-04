@@ -34,7 +34,6 @@ constexpr int kelevator_motor_port = 6;
 constexpr int kelevator_pnumatic_port = 0;
 constexpr int kshooter_talon_port = 8;
 constexpr int kintake_reversal_amps = 10;
-constexpr int kintake_reversal_time = .05;
 }
 
 namespace AutoConst {}
