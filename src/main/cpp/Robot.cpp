@@ -4,13 +4,10 @@
 // test2
 #include "Robot.h"
 #include "ctre/Phoenix.h"
-#include "drivebase.h"
 #include <cameraserver/CameraServer.h>
 #include <frc/Joystick.h>
 
 using namespace frc;
-
-DriveBase *drivebase;
 
 void Robot::RobotInit() {}
 void Robot::RobotPeriodic() {}
@@ -19,10 +16,8 @@ void Robot::AutonomousInit() {}
 void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {
-  drivebase = new DriveBase();
-  frc::CameraServer::GetInstance()->StartAutomaticCapture();
 }
-void Robot::TeleopPeriodic() { drivebase->Drive(); }
+void Robot::TeleopPeriodic() {  }
 
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
