@@ -2,22 +2,16 @@
 using namespace frc;
 using namespace rev;
 
-float Shooter::ShootAtVelocity(int velocity) {
-  shooter_talon.Set(ControlMode::Velocity, velocity);
-  return shooter_talon.GetSelectedSensorVelocity(0);
-void Shooter::ShootPercentOutput(int percent){
-    shooterneo_lead.Set(percent);
+void Shooter::ShootPercentOutput(int percent1, int percent2){
+    shooterneo_lead.Set(percent1);
+    shooterneo_follow.Set(percent2);
 }
 
-void Shooter::ShootPercentOutput(int percent) {
-  shooter_talon.Set(ControlMode::PercentOutput, percent);
-} 
-float IndependentControl(int leadvelocity, int followvelocity){
-    double SetPoint = 0.0;
-    m_pidController.SetReference(SetPoint, rev::ControlType::kVelocity);
-    m_pidController2.SetReference(SetPoint, rev::ControlType::kVelocity);
+float Shooter::IndependentControl(int lead_velocity, int follow_velocity, bool return_value=false){
+    m_pidController.SetReference(lead_velocity, rev::ControlType::kVelocity);
+    m_pidController2.SetReference(follow_velocity, rev::ControlType::kVelocity);
 
-    return shooterneo_lead.GetEncoder().GetVelocity();
+    if(return_value) return shooterneo_lead.GetEncoder().GetVelocity();
     return shooterneo_follow.GetEncoder().GetVelocity();
 
 }

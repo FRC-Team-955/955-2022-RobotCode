@@ -17,7 +17,7 @@ elevator_motor.Set(ControlMode::PercentOutput, 0);
         //if during set up it started below the bottom limit
         else if (limit_switch_bottom.Get() == 1)
         {
-            set_up_done == true;
+            set_up_done = true;
             elevator_motor.SetSelectedSensorPosition(0);
         }
         //if it somehow started above the bottom limit switch as a fail safe (will not slow down when reaching this point)
@@ -31,7 +31,7 @@ elevator_motor.Set(ControlMode::PercentOutput, 0);
             else if (joystick_position < 0){
                 elevator_motor.Set(ControlMode::PercentOutput, joystick_position);
             }
-            set_up_done == true;
+            set_up_done = true;
         }
         else if (joystick_position > 0)
         {
