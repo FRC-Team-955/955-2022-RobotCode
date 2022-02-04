@@ -1,9 +1,4 @@
-#ifndef BALL_MANAGER
-#define BALL_MANAGER
-#include <ctre/phoenix.h>
-#include <frc/Solenoid.h>
-#include <frc/Joystick.h>
-#include <iost#ifndef BALLMANAGER
+#ifndef BALLMANAGER
 #define BALLMANAGER
 #include <ctre/Phoenix.h>
 #include <frc/Joystick.h>
@@ -17,42 +12,33 @@ using namespace frc;
 #include "colorsensor.h"
 #include "hopper.h"
 #include "shooter.h"
+#include "ultrasonic.h"
 
 class BallManager {
 public:
-  BallManager() {}
+  BallManager(){};
   std::string GetHopperState(int position);
   void Shoot();
-  bool MoveIndex(int start, int end);
-  
+  void MoveIndex();
+  void CheckHopperState();
+  bool IsEmpty();
+  void LoadHopper();
+  void Reject();
+  int motor_velocity = 0;
+  int target_velocity = 0;
+  int range = 0;
+
 
 
 private:
-  std::string position[2];//position[0] = color of position 1 position[1] = color of position 2
-  position[0] = "NULL";
-  position[1] = "NULL";
-  std::string inbetween;
-};
-#endifream>
-#include <string>
-#include "hopper.h"
-#include "breakbeam.h"
-#include "settings.h"
-#include "colorsensor.h"
-using namespace frc;
+  std::string position[2] = {"NULL", "NULL"};//position[0] = color of position 1 position[1] = color of position 2
+  std::string inbetween = "NULL";
+  std::string team_color = "Red";
 
-class BallManager{
-    public:
-        std::string GetHopperState (int position);
-        void ShootBall();
-        bool MoveIndex(0, 1);
-    private:
-        std::string Ball1[2]; // Ball1[0] == "COlor" Ball1[1] = index
-        std::string Ball2[2];
-        Hopper hopper_0;
-        Hopper hopper_1;
-        Hopper hopper_NULL;
+  ColorSensor color_sensor;
+  BeamBreak break_beam;
+  Hopper hopper;
+  Shooter shooter;
 
 };
-
-#endif
+#endif 

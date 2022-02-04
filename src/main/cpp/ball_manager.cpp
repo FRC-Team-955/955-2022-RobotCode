@@ -8,30 +8,26 @@ std::string BallManager::GetHopperState(int slot)
 
 void BallManager::CheckHopperState()
 {
-    if(CheckForBall())
+    if(color_sensor.CheckForBall())
     {
-        position[0] = ClosestColor();
+        position[0] = color_sensor.ClosestColor();
     }
-    if(!BeamBroken() && !CheckForBall() && position[0] != "NULL")
+    if(!ultrasonic.SonicDistance("in") <= 3 && !color_sensor.CheckForBall() && position[0] != "NULL")
     {
         inbetween = position[0];
         position[0] = "NULL";
     }
-    if(BeamBroken())
+    if(ultrasonic.SonicDistance("in") <= 3)
     {
         position[1] = inbetween;
     }
-    if(!BeamBroken())
-    {
-        positition[1] = "NULL";
-    }
 }
 
-bool BallManager::MoveIndex()
+void BallManager::MoveIndex()
 {
-    if(!BeamBroken() && position[0] != "NULL")
+    if(!ultrasonic.SonicDistance("in") <= 3 && position[0] != "NULL")
     {
-        RunHopperMotor(0.5, 0);
+        hopper.RunHopperMotor(0.5, 0.5);
     }
 }
 
@@ -39,11 +35,11 @@ void BallManager::LoadHopper()
 {
     if(IsEmpty())
     {
-        RunHopperMotor(0.5, 0.5);
+        hopper.RunHopperMotor(0.5, 0.5);
     }
-    if(BeamBroken() && !CheckForBall())
+    else if(ultrasonic.SonicDistance("in") <= 3 && !color_sensor.CheckForBall())
     {
-        RunHopperMotor(0, 0.5);
+        hopper.RunHopperMotor(0, 0.5);
     }
 }
 
@@ -56,3 +52,23 @@ bool BallManager::IsEmpty()
         return 0;
     }
 }
+
+void BallManager::Shoot()
+{
+    if(shooter.ShootAtVelocity(motor_velocity) >= target_velocity - range && shooter.ShootAtVelocity(motor_velocity) <= target_velocity + range && position[1] == team_color)
+    {
+        position[1] = "NULL";
+    }
+}
+
+void BallManager::Reject()
+{
+    if(shooter.ShootAtVelocity(MechanismConst::kreject_velocity) >= MechanismConst::kreject_target - range  && shooter.ShootAtVelocity(MechanismConst::kreject_velocity) <= MechanismConst::kreject_target + range && position[1] != team_color)
+    {
+        position[1] = "NULL";
+    }
+    if(position[0] != team_color)
+    {
+        hopper.RunHopperMotor(0, -0.5);
+    }
+} 

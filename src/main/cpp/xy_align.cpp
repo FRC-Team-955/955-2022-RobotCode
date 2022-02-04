@@ -2,6 +2,7 @@
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h"
 #include "drivebase.h"
+#include "ball_manager.h"
 
 
 using namespace frc;
@@ -23,6 +24,8 @@ void XYalign::test()
     float heading_error =  180 - targetYaw;
     float distance_error = 120 - targetPitch;
 
+
+
     float steering_adjust = 0.0f;
     /*if (tx > 1.0)
     {
@@ -35,6 +38,11 @@ void XYalign::test()
     float distance_adjust = KpDistance * distance_error; //Set the variable in shooter code
     steering_adjust = Kp*heading_error;
 
+    //rev(distance_adjust); function here
+
+    if(steering_adjust < 0.1 && steering_adjust > -0.1){
+        Shoot();
+    } 
     drivebase->DriveTank(steering_adjust, -steering_adjust);
   }
 }
