@@ -19,7 +19,7 @@ void BallManager::CheckHopperState()
     {
         position[0] = color_sensor.ClosestColor();
     }
-    if(!ultrasonic.SonicDistance("in") <= 3 && !color_sensor.CheckForBall() && position[0] != "NULL")
+    if(ultrasonic.SonicDistance("in") > 3 && !color_sensor.CheckForBall() && position[0] != "NULL")
     {
         inbetween = position[0];
         position[0] = "NULL";
@@ -33,7 +33,7 @@ void BallManager::CheckHopperState()
 
 void BallManager::MoveIndex()
 {
-    if(!ultrasonic.SonicDistance("in") <= 3 && position[0] != "NULL")
+    if(ultrasonic.SonicDistance("in") > 3 && position[0] != "NULL")
     {
         hopper.RunHopperMotor(0.5, 0.5);
     }
@@ -42,7 +42,7 @@ void BallManager::MoveIndex()
 void BallManager::LoadHopper()
 {
 
-    if(!ultrasonic.SonicDistance("in") <= 3)
+    if(ultrasonic.SonicDistance("in") <= 3)
     {
         hopper.RunHopperMotor(0.5, 0.5);
     }
@@ -63,7 +63,7 @@ bool BallManager::IsEmpty()
 }
 
 bool BallManager::Rev()
-
+{
     if(shooter.ShootAtVelocity(motor_velocity) >= target_velocity - range && shooter.ShootAtVelocity(motor_velocity) <= target_velocity + range && position[1] == team_color){
         return 1;
     }
