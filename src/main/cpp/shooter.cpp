@@ -14,8 +14,3 @@ void IndependentControl(int leadvelocity, int followvelocity){
     return shooterneo_lead.GetEncoder().GetVelocity();
 
 }
-
-
-
-
-

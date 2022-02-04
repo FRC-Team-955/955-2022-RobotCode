@@ -19,6 +19,9 @@ constexpr int kleft_follow_neo_number = 2;
 constexpr int kright_follow_neo_number = 5;
 } // namespace DriveConst
 
-namespace MechanismConst {double kP = 1, kI = 1, kD = 1, kIz = 1, kFF = 1, kMaxOutput = 1, kMinOutput = 1;}
+namespace MechanismConst {double kP = 1, kI = 1, kD = 1, kIz = 1, kFF = 1, kMaxOutput = 1, kMinOutput = 1;
 constexpr int shootertalon_follow = 1; 
+constexpr int shooter_talon = 8;
+};
+
 namespace AutoConst {}

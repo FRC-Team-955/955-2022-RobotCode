@@ -7,3 +7,8 @@ void DriveBase::Drive() {
       joystick.GetRawAxis(Joy0Const::kquick_turn_button), isQuickTurn);
   // m_pidController.SetReference(rotations, rev::ControlType::kPosition);
 }
+
+void DriveBase::DriveTank(float leftWheelInput, float rightWheelInput){
+
+    m_robotDrive.TankDrive(leftWheelInput, rightWheelInput, false);
+}

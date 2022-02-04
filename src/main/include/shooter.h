@@ -1,7 +1,7 @@
 #ifndef SHOOTER
 #define SHOOTER
+
 #include <iostream>
-#include "frc/Joystick.h"
 #include "ctre/Phoenix.h"
 #include "rev/CANSparkMax.h"
 #include "settings.h"
@@ -39,6 +39,8 @@ class Shooter {
     rev::SparkMaxPIDController m_pidController2 = shooterneo_follow.GetPIDController();
 
 
+private:
+  TalonSRX shooter_talon{1};
 };
 
 #endif
