@@ -15,9 +15,7 @@ void Intake::RunIntake(float intake_percent) {
   if (intake_talon.GetOutputCurrent() > MechanismConst::kintake_reversal_amps) {
     intake_percent *= -1;
   }
-    intake_talon.Set(ControlMode::PercentOutput, intake_percent);
+  intake_talon.Set(ControlMode::PercentOutput, intake_percent);
 }
 
-void Intake::StopIntake() { 
-  intake_talon.Set(ControlMode::PercentOutput, 0); 
-}
+void Intake::StopIntake() { intake_talon.Set(ControlMode::PercentOutput, 0); }

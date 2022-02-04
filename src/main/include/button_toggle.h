@@ -1,17 +1,14 @@
 #ifndef BUTTONTOGGLE
 #define BUTTONTOGGLE
 
-#include <iostream>
 #include <frc/Timer.h>
+#include <iostream>
+
 
 class ButtonToggle {
 public:
-  ButtonToggle() {
-    debounce_period = units::second_t(.1);
-  }
-  ButtonToggle(float period) {
-    debounce_period = units::second_t(period);
-  }
+  ButtonToggle() { debounce_period = units::second_t(.1); }
+  ButtonToggle(float period) { debounce_period = units::second_t(period); }
 
   bool GetToggleNoDebounce(bool button);
   void SetDebouncePeriod(float period);

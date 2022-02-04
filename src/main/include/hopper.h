@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <ctre/Phoenix.h>
 
-
 class Hopper {
 public:
   Hopper() {

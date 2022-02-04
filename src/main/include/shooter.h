@@ -29,11 +29,14 @@ class Shooter {
 
 public:
   void ShootPercentOutput(int percent1, int percent2);
-  float IndependentControl(int lead_velocity, int follow_velocity, bool return_value);
+  float IndependentControl(int lead_velocity, int follow_velocity,
+                           bool return_value);
 
 private:
-  rev::CANSparkMax shooterneo_lead{MechanismConst::shooter_lead_port, CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax shooterneo_follow{MechanismConst::shooter_follow_port, CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax shooterneo_lead{MechanismConst::shooter_lead_port,
+                                   CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax shooterneo_follow{MechanismConst::shooter_follow_port,
+                                     CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxPIDController m_pidController =
       shooterneo_lead.GetPIDController();
   rev::SparkMaxPIDController m_pidController2 =

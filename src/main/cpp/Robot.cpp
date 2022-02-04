@@ -10,7 +10,6 @@
 #include "colorsensor.h"
 #include "drivebase.h"
 
-
 using namespace frc;
 
 Joystick *joystick;
@@ -28,9 +27,7 @@ void Robot::TeleopInit() {
   drivebase = new DriveBase();
   color_sensor = new ColorSensor();
 }
-void Robot::TeleopPeriodic() { 
-  drivebase->Drive();
-}
+void Robot::TeleopPeriodic() { drivebase->Drive(); }
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
 void Robot::TestInit() {}
