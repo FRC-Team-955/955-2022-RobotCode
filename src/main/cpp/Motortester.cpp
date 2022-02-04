@@ -68,7 +68,7 @@ void Motor::motor_test(){
             motor7.Set(ControlMode::PercentOutput, 0.1);
             if (time.HasElapsed(units::second_t (3)) == true){
                 motor7.Set(ControlMode::PercentOutput, 0);
-                time.Reset()
+                time.Reset();
                 stage++;
             }
              
@@ -78,7 +78,7 @@ void Motor::motor_test(){
             motor8.Set(ControlMode::PercentOutput, 0.1);
             if (time.HasElapsed(units::second_t (3)) == true){
                 motor8.Set(ControlMode::PercentOutput, 0);
-                time.Reset():
+                time.Reset();
                 stage++;
             }
         }
