@@ -52,7 +52,7 @@ void Robot::AutonomousInit() {
 }
 void Robot::AutonomousPeriodic() {}
 void Robot::TeleopInit() {
-
+  Shuffleboard::StartRecording();
   Shuffleboard::SelectTab("Telop");
   m_timer->Start();
 
@@ -64,6 +64,8 @@ void Robot::TeleopPeriodic() {
   //Change to if (m_timer->GetMatchTime() > 10_s){ for the final version
   if (m_timer->Get() > 10_s){
     Shuffleboard::SelectTab("End Game");
+    Shuffleboard::StopRecording();
+
   }
 
   // ShuffleBoard Stuff
