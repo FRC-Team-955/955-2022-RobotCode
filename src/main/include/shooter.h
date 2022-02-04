@@ -29,7 +29,7 @@ class Shooter {
         }
     public:
     void ShootPercentOutput(int percent);
-    void IndependentControl(int leadvelocity, int followvelocity);
+    float IndependentControl(int leadvelocity, int followvelocity);
 
 
     private:
