@@ -1,6 +1,5 @@
 #ifndef SHOOTER
 #define SHOOTER
-
 #include <iostream>
 #include "ctre/Phoenix.h"
 #include "rev/CANSparkMax.h"

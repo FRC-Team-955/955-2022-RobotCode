@@ -12,5 +12,6 @@ float IndependentControl(int leadvelocity, int followvelocity){
     m_pidController2.SetReference(SetPoint, rev::ControlType::kVelocity);
 
     return shooterneo_lead.GetEncoder().GetVelocity();
+    return shooterneo_follow.GetEncoder().GetVelocity();
 
 }
