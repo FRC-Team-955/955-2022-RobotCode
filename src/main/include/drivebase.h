@@ -6,6 +6,9 @@
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
 
+#include <button_toggle.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+
 #include "settings.h"
 
 using namespace rev;
@@ -34,6 +37,8 @@ private:
 
   frc::Joystick joystick{0};
 
-  bool ReverseDrive = false;
+  ButtonToggle buttontoggle{};
+
+  bool isQuickTurn = false;
 };
 #endif

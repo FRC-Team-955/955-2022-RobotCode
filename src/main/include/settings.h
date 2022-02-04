@@ -16,6 +16,7 @@ constexpr int limit_switch_bottom_port = 2;
 // value at which color sensor proximity will return there is a ball 0(far away)
 // - 2047(close as possible)
 constexpr int kvalue_for_ball = 2000;
+constexpr int kultrasonic_port = 0; 
 } // namespace SensorConst
 
 namespace DriveConst {
@@ -27,13 +28,22 @@ constexpr bool kleft_lead_is_inverted = false;
 constexpr bool kright_lead_is_inverted = true;
 } // namespace DriveConst
 
-namespace MechanismConst {
+namespace MechanismConst {double kP = 1, kI = 1, kD = 1, kIz = 1, kFF = 1, kMaxOutput = 1, kMinOutput = 1;
+constexpr int shootertalon_follow = 1; 
+constexpr int shooter_talon = 8;
 constexpr int khopper_motor_top_port = 1;
 constexpr int khopper_motor_bottom_port = 2;
+constexpr int kshooter_talon_port = 8;
+constexpr float kcompressor_warning_pressure = 10;
+constexpr int kvelocity_range = 1;
 constexpr int kelevator_motor_port = 6;
 constexpr int kelevator_pnumatic_port = 0;
 constexpr int kshooter_talon_port = 8;
 constexpr int kintake_reversal_amps = 10;
 }
+constexpr int climb_amperage = 10;
+constexpr int elevator_slow_multiplier = 0.5;
+};
+
 
 namespace AutoConst {}
