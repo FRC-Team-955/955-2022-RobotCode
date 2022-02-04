@@ -40,6 +40,6 @@ private:
   BeamBreak break_beam;
   Hopper hopper;
   Shooter shooter;
-
+  UltraSonic ultrasonic;
 };
 #endif

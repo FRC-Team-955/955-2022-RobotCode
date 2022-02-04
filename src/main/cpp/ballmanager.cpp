@@ -3,9 +3,9 @@ using namespace frc;
 
 std::string BallManager::GetHopperState(int slot)
 {
-    if(slot != 0 && slow != 1)
+    if(slot != 0 && slot != 1)
     {
-        return "NULL"
+        return "NULL";
     }
     else
     {
