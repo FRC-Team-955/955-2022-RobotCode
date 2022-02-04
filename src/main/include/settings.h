@@ -9,6 +9,7 @@ constexpr int kreverse_drive = 4;
 
 //auto align and shoot
 constexpr int kshoot_trigger= 6;
+constexpr int kpick_up_trigger= 7;
 
 } // namespace Joy0Const
 
