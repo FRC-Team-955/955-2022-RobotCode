@@ -3,7 +3,14 @@ using namespace frc;
 
 std::string BallManager::GetHopperState(int slot)
 {
-    return position[slot - 1];
+    if(slot != 0 && slow != 1)
+    {
+        return "NULL"
+    }
+    else
+    {
+    return position[slot];
+    }
 }
 
 void BallManager::CheckHopperState()
@@ -20,6 +27,7 @@ void BallManager::CheckHopperState()
     if(ultrasonic.SonicDistance("in") <= 3)
     {
         position[1] = inbetween;
+        inbetween = "NULL";
     }
 }
 
@@ -33,7 +41,8 @@ void BallManager::MoveIndex()
 
 void BallManager::LoadHopper()
 {
-    if(IsEmpty())
+
+    if(!ultrasonic.SonicDistance("in") <= 3)
     {
         hopper.RunHopperMotor(0.5, 0.5);
     }
@@ -45,7 +54,17 @@ void BallManager::LoadHopper()
 
 bool BallManager::IsEmpty()
 {
-    if(position[1] == "NULL" && position[0] == "NULL"){
+    if(position[1] == "NULL" && position[0] == "NULL" && inbetween == "NULL"){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+bool BallManager::Rev()
+
+    if(shooter.ShootAtVelocity(motor_velocity) >= target_velocity - range && shooter.ShootAtVelocity(motor_velocity) <= target_velocity + range && position[1] == team_color){
         return 1;
     }
     else{
@@ -55,9 +74,9 @@ bool BallManager::IsEmpty()
 
 void BallManager::Shoot()
 {
-    if(shooter.ShootAtVelocity(motor_velocity) >= target_velocity - range && shooter.ShootAtVelocity(motor_velocity) <= target_velocity + range && position[1] == team_color)
+    if(Rev())
     {
-        position[1] = "NULL";
+        hopper.RunHopperMotor(0.5, 0);
     }
 }
 
@@ -65,7 +84,7 @@ void BallManager::Reject()
 {
     if(shooter.ShootAtVelocity(MechanismConst::kreject_velocity) >= MechanismConst::kreject_target - range  && shooter.ShootAtVelocity(MechanismConst::kreject_velocity) <= MechanismConst::kreject_target + range && position[1] != team_color)
     {
-        position[1] = "NULL";
+        hopper.RunHopperMotor(0.5, 0);
     }
     if(position[0] != team_color)
     {

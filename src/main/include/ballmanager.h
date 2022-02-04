@@ -18,12 +18,13 @@ class BallManager {
 public:
   BallManager(){};
   std::string GetHopperState(int position);
-  void Shoot();
+  bool Rev();
   void MoveIndex();
   void CheckHopperState();
   bool IsEmpty();
   void LoadHopper();
   void Reject();
+  void Shoot();
   int motor_velocity = 0;
   int target_velocity = 0;
   int range = 0;
