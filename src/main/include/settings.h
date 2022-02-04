@@ -10,6 +10,9 @@ namespace Joy1Const {}
 
 namespace SensorConst {
 constexpr int kbreak_beam_port = 0;
+
+constexpr int kvalue_for_ball = 2000;
+
 }
 
 namespace DriveConst {
@@ -20,7 +23,14 @@ constexpr int kright_follow_neo_number = 5;
 } // namespace DriveConst
 
 namespace MechanismConst {
+
+    constexpr int khopper_motor_number1 = 1;
+    constexpr int khopper_motor_number2 = 2;
+    constexpr int khopper_motor_number3 = 3;
+    constexpr int kvelocity_range = 1;
+
 constexpr int shooter_talon = 8;
+
 }
 
 namespace AutoConst {}
