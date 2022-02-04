@@ -1,16 +1,27 @@
 #pragma once
 
 namespace Joy0Const {
+//drivebase
 constexpr int kquick_turn_button = 1;
 constexpr int kdrive_speed_axis = 1;
 constexpr int kdrive_curvature_axis = 5;
 constexpr int kreverse_drive = 4;
+
+//auto align and shoot
+constexpr int kshoot_trigger= 6;
+
 } // namespace Joy0Const
 
 namespace Joy1Const {
-constexpr int kshooter_axis = 0;
-constexpr int khopper_top_axis = 4;    // I think these are the triggers?
-constexpr int khopper_bottom_axis = 5; // I think these are the triggers?
+
+//intake
+constexpr int kintake_deploy_button = 33;
+constexpr int kintake_run_button = 32;
+
+// constexpr int khopper_top_axis = 4;    // I think these are the triggers?
+// constexpr int khopper_bottom_axis = 5; // I think these are the triggers?
+
+//elevator
 constexpr int kelevator_axis = 3;      // right stick up and down?
 constexpr int kelevator_lock_button = 1;
 } // namespace Joy1Const
@@ -41,4 +52,8 @@ constexpr int kelevator_pnumatic_port = 0;
 constexpr int kshooter_talon_port = 8;
 } // namespace MechanismConst
 
+namespace TelopConst{
+constexpr double kintake_speed = 0.5;
+
+}// namespace TelopConst
 namespace AutoConst {}
