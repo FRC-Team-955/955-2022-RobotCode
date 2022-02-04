@@ -5,6 +5,7 @@ constexpr int kquick_turn_button = 1;
 constexpr int kdrive_speed_axis = 1;
 constexpr int kdrive_curvature_axis = 5;
 constexpr int kreverse_drive = 4;
+constexpr int kball_aimbot_button = 6;
 } // namespace Joy0Const
 
 namespace Joy1Const {}
@@ -26,6 +27,7 @@ constexpr int kleft_follow_neo_number = 2;
 constexpr int kright_follow_neo_number = 5;
 constexpr bool kleft_lead_is_inverted = false;
 constexpr bool kright_lead_is_inverted = true;
+constexpr double kturn_div = 3;
 } // namespace DriveConst
 
 namespace MechanismConst {

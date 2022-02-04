@@ -27,7 +27,7 @@ void Robot::TeleopInit() {
   drivebase = new DriveBase();
   color_sensor = new ColorSensor();
 }
-void Robot::TeleopPeriodic() { drivebase->Drive(); }
+void Robot::TeleopPeriodic() { }
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
 void Robot::TestInit() {}
