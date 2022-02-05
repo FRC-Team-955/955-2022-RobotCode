@@ -13,32 +13,33 @@ using namespace frc;
 #include "hopper.h"
 #include "shooter.h"
 #include "ultrasonic.h"
+#include "intake.h"
 
 class BallManager {
 public:
   BallManager(){};
   std::string GetHopperState(int position);
-  void Shoot();
+  bool Rev(double target_velocity);
   void MoveIndex();
   void CheckHopperState();
-  bool IsEmpty();
+  bool IsFull();
   void LoadHopper();
   void Reject();
-  int motor_velocity = 0;
-  int target_velocity = 0;
-  int range = 0;
-
+  void Shoot();
+  std::string team_color = "Red";
+  
 
 
 private:
   std::string position[2] = {"NULL", "NULL"};//position[0] = color of position 1 position[1] = color of position 2
   std::string inbetween = "NULL";
-  std::string team_color = "Red";
+
 
   ColorSensor color_sensor;
   BeamBreak break_beam;
   Hopper hopper;
   Shooter shooter;
-
+  UltraSonic ultrasonic;
+  Intake intake;
 };
-#endif 
+#endif

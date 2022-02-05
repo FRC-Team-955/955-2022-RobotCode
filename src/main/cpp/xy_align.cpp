@@ -29,10 +29,11 @@ void XYalign::test()
     float distance_adjust = KpDistance * distance_error; //Set the variable in shooter code
     steering_adjust = Kp*heading_error;
 
-    //rev(distance_adjust); function here
+    ball_manage.target_velocity1 =  distance_adjust; 
+    ball_manage.target_velocity2 =  distance_adjust;
 
     if(steering_adjust < 0.1 && steering_adjust > -0.1){
-        Shoot();
+        ball_manage.Shoot();
     } 
     drivebase->DriveTank(steering_adjust, -steering_adjust);
   
