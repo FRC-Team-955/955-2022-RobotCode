@@ -31,6 +31,8 @@ public:
   void ShootPercentOutput(int percent1, int percent2);
   float IndependentControl(int lead_velocity, int follow_velocity,
                            bool return_value);
+  void DisplayShooterInfo();
+  
 
 private:
   rev::CANSparkMax shooterneo_lead{MechanismConst::shooter_lead_port,

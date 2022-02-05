@@ -12,7 +12,15 @@ float Shooter::IndependentControl(int lead_velocity, int follow_velocity,
   m_pidController.SetReference(lead_velocity, rev::ControlType::kVelocity);
   m_pidController2.SetReference(follow_velocity, rev::ControlType::kVelocity);
 
-  if (return_value)
+  if (return_value){
     return shooterneo_lead.GetEncoder().GetVelocity();
-  return shooterneo_follow.GetEncoder().GetVelocity();
+  }else{
+    return shooterneo_follow.GetEncoder().GetVelocity();
+  }
+}
+void Shooter::DisplayShooterInfo(){
+  frc::Shuffleboard::GetTab("Telop").Add("Shooter Top Amp",shooterneo_lead.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("Telop").Add("Shooter Top Velocity",shooterneo_lead.GetEncoder().GetVelocity());
+  frc::Shuffleboard::GetTab("Telop").Add("Shooter Bottom Amp",shooterneo_follow.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("Telop").Add("Shooter Bottom Velocity",shooterneo_follow.GetEncoder().GetVelocity());
 }

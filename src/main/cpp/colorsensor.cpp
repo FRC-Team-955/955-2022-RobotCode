@@ -23,3 +23,7 @@ bool ColorSensor::CheckForBall() {
   // GetProximity return a int from 0(far) to 2047(close)
   return (rev_color_sensor->GetProximity() > SensorConst::kvalue_for_ball);
 }
+
+void ColorSensor::DisplayColorInfo(){
+  frc::Shuffleboard::GetTab("Telop").Add("Current Color",ColorSensor::ClosestColor());
+}

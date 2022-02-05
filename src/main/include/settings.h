@@ -1,4 +1,5 @@
 #pragma once
+#include <frc/shuffleboard/Shuffleboard.h>
 
 namespace Joy0Const {
 constexpr int kquick_turn_button = 2;

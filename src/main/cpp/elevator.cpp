@@ -107,3 +107,10 @@ bool Elevator::OffGround() {
     return false;
   }
 }
+
+void Elevator::DisplayElevatorInfo(){
+  frc::Shuffleboard::GetTab("End Game").Add("Elevator Amp", elevator_motor.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("End Game").Add("Elevator Position", elevator_motor.GetSelectedSensorPosition(0));
+  frc::Shuffleboard::GetTab("End Game").Add("Elevator Pnemactic State",solenoid0.Get());
+
+}
