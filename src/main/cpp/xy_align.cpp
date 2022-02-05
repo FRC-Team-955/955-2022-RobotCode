@@ -13,8 +13,7 @@ void XYalign::test()
   float targetPitch = table->GetNumber("targetPitch", 0.0);
 
 
-  if (joystick.GetRawButton(9))
-  {
+
     float heading_error =  180 - targetYaw;
     float distance_error = 120 - targetPitch;
 
@@ -36,7 +35,7 @@ void XYalign::test()
         Shoot();
     } 
     drivebase->DriveTank(steering_adjust, -steering_adjust);
-  }
+  
 }
 bool XYalign::hasTargetLimeLight(){
   return table->GetBoolean("hasTarget", false);
