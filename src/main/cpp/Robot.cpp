@@ -6,7 +6,6 @@
 #include "Robot.h"
 #include "ctre/Phoenix.h"
 #include <cameraserver/CameraServer.h>
-
 #include "colorsensor.h"
 #include "drivebase.h"
 
@@ -17,7 +16,10 @@ Joystick *joystick;
 DriveBase *drivebase;
 ColorSensor *color_sensor;
 
+photonlib::PhotonCamera camera{"BallDetect"};
+
 void Robot::RobotInit() {
+  
   frc::CameraServer::GetInstance()->StartAutomaticCapture();
 }
 void Robot::RobotPeriodic() {}
@@ -27,7 +29,10 @@ void Robot::TeleopInit() {
   drivebase = new DriveBase();
   color_sensor = new ColorSensor();
 }
-void Robot::TeleopPeriodic() { }
+void Robot::TeleopPeriodic() { 
+  photonlib::PhotonPipelineResult result = camera.GetLatestResult();
+  drivebase->Drive(result);
+}
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
 void Robot::TestInit() {}

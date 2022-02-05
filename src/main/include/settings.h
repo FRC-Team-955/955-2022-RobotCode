@@ -1,11 +1,11 @@
 #pragma once
 
 namespace Joy0Const {
-constexpr int kquick_turn_button = 1;
+constexpr int kquick_turn_button = 2;
 constexpr int kdrive_speed_axis = 1;
-constexpr int kdrive_curvature_axis = 5;
-constexpr int kreverse_drive = 4;
-constexpr int kball_aimbot_button = 6;
+constexpr int kdrive_curvature_axis = 4;
+constexpr int kreverse_drive =  1;
+constexpr int kball_aimbot_button = 3;
 } // namespace Joy0Const
 
 namespace Joy1Const {}
