@@ -19,8 +19,8 @@ class XYalign{
             //change name of table later
             auto table = nt::NetworkTableInstance::GetDefault().GetTable("photonvision");
         };
-        void test();
-        bool hasTargetLimeLight();
+        void Align();
+        bool HasTargetLimeLight();
 
     private:
         DriveBase *drivebase; 

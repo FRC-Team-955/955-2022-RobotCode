@@ -17,9 +17,9 @@ constexpr int kvalue_for_ball = 2000;
 
 namespace DriveConst {
 constexpr int kleft_lead_neo_number = 3;
-constexpr int kright_lead_neo_number = 4;
+constexpr int kright_lead_neo_number = 5;
 constexpr int kleft_follow_neo_number = 2;
-constexpr int kright_follow_neo_number = 5;
+constexpr int kright_follow_neo_number = 6;
 } // namespace DriveConst
 
 namespace MechanismConst {
