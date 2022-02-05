@@ -26,13 +26,14 @@ public:
   void LoadHopper();
   void Reject();
   void Shoot();
+  std::string team_color = "Red";
   
 
 
 private:
   std::string position[2] = {"NULL", "NULL"};//position[0] = color of position 1 position[1] = color of position 2
   std::string inbetween = "NULL";
-  std::string team_color = "Red";
+
 
   ColorSensor color_sensor;
   BeamBreak break_beam;
