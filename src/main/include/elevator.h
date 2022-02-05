@@ -4,7 +4,6 @@
 #include <frc/DigitalInput.h>
 #include <frc/Joystick.h>
 #include <frc/Solenoid.h>
-
 using namespace frc;
 #include "settings.h"
 
@@ -22,6 +21,7 @@ public:
   void LockElevator();
   void UnlockElevator();
   bool OffGround();
+  void DisplayElevatorInfo();
 
 private:
   bool set_up_done = false;

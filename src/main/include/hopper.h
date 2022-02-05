@@ -15,10 +15,9 @@ public:
   int max = 1;
   void RunHopperMotor(int hopper_motor_percent_top,
                       int hopper_motor_percent_bottom);
-
+  void DiplayHopperInfo();
 private:
   TalonSRX talon_hopper_top{MechanismConst::khopper_motor_top_port};
   TalonSRX talon_hopper_bottom{MechanismConst::khopper_motor_bottom_port};
 };
-
 #endif

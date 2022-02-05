@@ -23,6 +23,7 @@ public:
   };
   void Drive(photonlib::PhotonPipelineResult result);
   BallDetect ball_detector;
+  void DisplayDriveInfo();
 
 private:
   CANSparkMax m_leftLeadMotor{DriveConst::kleft_lead_neo_number,

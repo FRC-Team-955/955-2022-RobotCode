@@ -23,3 +23,15 @@ void DriveBase::Drive(photonlib::PhotonPipelineResult result) {
     }
   }
 }
+
+void DriveBase::DisplayDriveInfo() {
+  frc::Shuffleboard::GetTab("Telop").Add("LeftLeadAmps", m_leftLeadMotor.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("Telop").Add("leftFollowMotor", m_leftFollowMotor.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("Telop").Add("rightLeadMotor",m_rightLeadMotor.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("Telop").Add("rightFollowMotor", m_rightFollowMotor.GetOutputCurrent());
+  frc::Shuffleboard::GetTab("Telop").Add("Reverse Drive", ReverseDrive).WithWidget(frc::BuiltInWidgets::kBooleanBox);
+  frc::Shuffleboard::GetTab("Telop").Add("Quick Turn", isQuickTurn).WithWidget(frc::BuiltInWidgets::kBooleanBox);
+  frc::Shuffleboard::GetTab("Telop").Add("Ball Aimbot", BallAimbot).WithWidget(frc::BuiltInWidgets::kBooleanBox);
+
+
+}
