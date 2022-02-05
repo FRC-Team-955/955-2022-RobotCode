@@ -12,6 +12,11 @@
 #include "ctre/Phoenix.h"
 #include <frc/Joystick.h>
 
+#include <frc/Filesystem.h>
+#include <frc/trajectory/TrajectoryUtil.h>
+#include <wpi/fs.h>
+#include <frc/smartdashboard/SendableChooser.h>
+
 #include "drivebase.h"
 #include "auto.h"
 
@@ -22,9 +27,6 @@ DriveBase *drivebase;
 Auto * bryanauto;
 
 
-#include <frc/Filesystem.h>
-#include <frc/trajectory/TrajectoryUtil.h>
-#include <wpi/fs.h>
 
 frc::Trajectory trajectory;
 
@@ -35,6 +37,9 @@ frc::Trajectory trajectory;
 int state = 0;
 // std::string test = "okay";
 
+frc::SendableChooser<std::string> m_position_Chooser;
+frc::SendableChooser<std::string> m_team_color_Chooser;
+
 void Robot::RobotInit() {
   std::cout<<"robotinti"<<std::endl;
   
@@ -42,17 +47,27 @@ void Robot::RobotInit() {
   deployDirectory = deployDirectory / "Unnamed.wpilib.json";
   trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory.string());
 
-  // frc::Shuffleboard::GetTab("Auto");
-  // frc::Shuffleboard::GetTab("Telop");
-  // frc::Shuffleboard::GetTab("End Game");
+  //Add the options to the Choosers
+  m_position_Chooser.AddOption("Left","Left");
+  m_position_Chooser.AddOption("Right","Right");
+  m_position_Chooser.AddOption("Middle","Middle");
+  Shuffleboard::GetTab("Pre").Add("Robot Position", m_position_Chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
+  m_team_color_Chooser.AddOption("Red", "Blue");
+  m_team_color_Chooser.AddOption("Red", "Red");
+  Shuffleboard::GetTab("Pre").Add("Team Color", m_team_color_Chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 
-  // frc::Shuffleboard::SelectTab(0);
-  // frc::SmartDashboard::SetDefaultStringArray("Team Color",color);
+  Shuffleboard::SelectTab("Pre");
 }
 void Robot::RobotPeriodic() {}
 
 void Robot::AutonomousInit() {
   state = 0;
+
+  //Gets the values from the Shuffleboard
+  std::string auto_selection = Shuffleboard::GetTab("Pre").Add("Robot Position", "NA").GetEntry().GetString("NA");
+  //The team color it defaults to Red jic you forget to set color (aka hope to win 50-50)
+  ball_manager.team_color = Shuffleboard::GetTab("Pre").Add("Robot Position", "NA").GetEntry().GetString("Red");
+  
   std::cout<<"autoinit"<<std::endl;
 
 }
