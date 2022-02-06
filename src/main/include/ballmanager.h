@@ -5,6 +5,7 @@
 #include <frc/Joystick.h>
 #include <frc/Solenoid.h>
 #include <frc/DigitalInput.h>
+#include <networktables/NetworkTable.h>
 
 #include "settings.h"
 #include "hopper.h"
