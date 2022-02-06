@@ -1,14 +1,15 @@
 #ifndef SHOOTER
 #define SHOOTER
+#include <iostream>
 #include "ctre/Phoenix.h"
 #include "rev/CANSparkMax.h"
+
 #include "settings.h"
-#include <iostream>
 
 using namespace rev;
 
 class Shooter {
-  Shooter() {
+  Shooter(){
     shooterneo_lead.SetSmartCurrentLimit(40);
     shooterneo_follow.SetSmartCurrentLimit(40);
 
@@ -29,10 +30,10 @@ class Shooter {
 
 public:
   void ShootPercentOutput(int percent1, int percent2);
-  float IndependentControl(int lead_velocity, int follow_velocity,
-                           bool return_value);
+  //Takes in the two velocities of the motors
+  void VelocityControl(int lead_velocity, int follow_velocity);
+  float VelocityOutput(std::string shooter_motor);
   void DisplayShooterInfo();
-  
 
 private:
   rev::CANSparkMax shooterneo_lead{MechanismConst::shooter_lead_port,

@@ -45,6 +45,13 @@ constexpr int kelevator_pnumatic_port = 0;
 constexpr int kintake_reversal_amps = 10;
 constexpr int climb_amperage = 10;
 constexpr int elevator_slow_multiplier = 0.5;
+
+//shooter
+constexpr int krange_target = 100;
+
+constexpr int krange_reject = 100;
+constexpr int kreject_target = 1000;
+
 } // namespace MechanismConst
 
 namespace AutoConst {}
