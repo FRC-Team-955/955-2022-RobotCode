@@ -1,4 +1,3 @@
-
 // Copyright (c) FIRT and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -15,12 +14,14 @@ Joystick *joystick;
 
 DriveBase *drivebase;
 ColorSensor *color_sensor;
-
 photonlib::PhotonCamera camera{"BallDetect"};
 
 void Robot::RobotInit() {
+  frc::CameraServer::StartAutomaticCapture();
+  cs::CvSink cvSink = frc::CameraServer::GetVideo();
+  cs::CvSource outputStream = frc::CameraServer::PutVideo("Blur", 640, 480);
   
-  frc::CameraServer::GetInstance()->StartAutomaticCapture();
+  // frc::CameraServer::GetInstance()->StartAutomaticCapture();
 }
 void Robot::RobotPeriodic() {}
 void Robot::AutonomousInit() {}

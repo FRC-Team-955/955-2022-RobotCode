@@ -111,38 +111,60 @@ void BallManager::DisplayBallManagerInfo(){
     // ball_layout.WithSize(4,2);
     // ball_layout.Add("Top Ball", ball_top);
 
-    if(GetHopperState(0)=="None"){
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom None", true);
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom Red", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom Blue", false);
-    }else if (GetHopperState(0)=="Red"){
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom None", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom Red", true);
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom Blue", false);
-    }else if (GetHopperState(0)=="Blue"){
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom None", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom Red", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom Blue", true);
-    }else{
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom None", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom Red", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Bottom Blue", false);
+    std::string color_state[3] ={"None","Red","Blue"};
+    bool top[3] = {false};
+    bool bottom[3] = {false};
+
+    for(int i = 0; i<3; i++){
+        if(GetHopperState(0) == color_state[i]){
+            top[i]=true;
+        }
     }
-    if(GetHopperState(1)=="None"){
-        frc::Shuffleboard::GetTab("Telop").Add("Top None", true);
-        frc::Shuffleboard::GetTab("Telop").Add("Top Red", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Top Blue", false);
-    }else if (GetHopperState(1)=="Red"){
-        frc::Shuffleboard::GetTab("Telop").Add("Top None", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Top Red", true);
-        frc::Shuffleboard::GetTab("Telop").Add("Top Blue", false);
-    }else if (GetHopperState(1)=="Blue"){
-        frc::Shuffleboard::GetTab("Telop").Add("Top None", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Top Red", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Top Blue", true);
-    }else{
-        frc::Shuffleboard::GetTab("Telop").Add("Top None", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Top Red", false);
-        frc::Shuffleboard::GetTab("Telop").Add("Top Blue", false);
+    for(int i = 0; i<3; i++){
+        if(GetHopperState(1) == color_state[i]){
+            bottom[i]=true;
+        }
     }
+    frc::Shuffleboard::GetTab("Telop").Add("Bottom None", bottom[0]);
+    frc::Shuffleboard::GetTab("Telop").Add("Bottom Red", bottom[1]);
+    frc::Shuffleboard::GetTab("Telop").Add("Bottom Blue", bottom[2]);
+
+    frc::Shuffleboard::GetTab("Telop").Add("Top None", top[0]);
+    frc::Shuffleboard::GetTab("Telop").Add("Top Red", top[1]);
+    frc::Shuffleboard::GetTab("Telop").Add("Top Blue", top[2]);
+
+    // if(GetHopperState(0)=="None"){
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom None", true);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom Red", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom Blue", false);
+    // }else if (GetHopperState(0)=="Red"){
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom None", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom Red", true);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom Blue", false);
+    // }else if (GetHopperState(0)=="Blue"){
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom None", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom Red", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom Blue", true);
+    // }else{
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom None", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom Red", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Bottom Blue", false);
+    // }
+    // if(GetHopperState(1)=="None"){
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top None", true);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top Red", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top Blue", false);
+    // }else if (GetHopperState(1)=="Red"){
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top None", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top Red", true);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top Blue", false);
+    // }else if (GetHopperState(1)=="Blue"){
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top None", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top Red", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top Blue", true);
+    // }else{
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top None", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top Red", false);
+    //     frc::Shuffleboard::GetTab("Telop").Add("Top Blue", false);
+    // }
 }

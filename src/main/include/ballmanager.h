@@ -17,7 +17,6 @@
 
 using namespace frc;
 
-
 class BallManager {
 public:
   std::string GetHopperState(int position);
