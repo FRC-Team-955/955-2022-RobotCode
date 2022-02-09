@@ -79,12 +79,12 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
     std::cout<<"auto periodic"<<std::endl;
-    bryanauto->GenerateTrajectory();
+    // bryanauto->GenerateTrajectory();
 
   if(state == 0){
     std::cout<<"state =0"<<std::endl;
 
-    //bryanauto->SetTrajectory(set_trajectory);
+    // bryanauto->SetTrajectory(set_trajectory);
     std::cout<<"settraj"<<std::endl;
 
     bryanauto-> Start();

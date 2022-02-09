@@ -50,6 +50,8 @@ void Auto::SetSpeeds(const frc::DifferentialDriveWheelSpeeds& speeds) {
 }
 
 void Auto::GenerateTrajectory(){
+    std::cout<<"tewefst"<<std::endl;
+
     //just as a test makes a trajectory from 0,0(no heading) to 1,0(no heading still)
     trajectory = trajectoryGenerator.GenerateTrajectory(frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),{frc::Translation2d(0.5_m, 0_m)}, frc::Pose2d(1_m,0_m, frc::Rotation2d(0_deg)),config);
     std::cout<<"test"<<std::endl;
@@ -58,6 +60,8 @@ void Auto::GenerateTrajectory(){
 void Auto::SetTrajectory(frc::Trajectory trajectory_input){
     std::cout<<"uh in fun"<<std::endl;
     trajectory= trajectory_input;
+    std::cout<<"uh in fun after"<<std::endl;
+
 }
 
 // void Auto::SetOutput(double leftVolts,double rightVolts){

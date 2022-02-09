@@ -98,7 +98,7 @@ private:
 
     frc::TrajectoryConfig config{AutoConst::kmax_velocity,AutoConst::kmax_acceleration};
     frc::TrajectoryGenerator trajectoryGenerator;
-    frc::Trajectory trajectory;
+    frc::Trajectory trajectory = trajectoryGenerator.GenerateTrajectory(frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),{frc::Translation2d(0.5_m, 0_m)}, frc::Pose2d(1_m,0_m, frc::Rotation2d(0_deg)),config);
 
     //has default values of 2.0 and 0.7
     frc::RamseteController ramsetecontroller;
