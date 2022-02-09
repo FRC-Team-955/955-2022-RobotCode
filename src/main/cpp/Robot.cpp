@@ -17,8 +17,9 @@
 #include <wpi/fs.h>
 #include <frc/smartdashboard/SendableChooser.h>
 
-#include "drivebase.h"
 #include "auto.h"
+
+#include "drivebase.h"
 
 using namespace frc;
 
@@ -78,11 +79,12 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
     std::cout<<"auto periodic"<<std::endl;
+    bryanauto->GenerateTrajectory();
 
   if(state == 0){
     std::cout<<"state =0"<<std::endl;
 
-    bryanauto->SetTrajectory(set_trajectory);
+    //bryanauto->SetTrajectory(set_trajectory);
     std::cout<<"settraj"<<std::endl;
 
     bryanauto-> Start();
