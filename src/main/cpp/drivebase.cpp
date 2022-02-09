@@ -17,8 +17,8 @@ void DriveBase::Drive(photonlib::PhotonPipelineResult result) {
       frc::SmartDashboard::PutBoolean("Reverse Drive", ReverseDrive);
     } else {
       m_robotDrive.CurvatureDrive(
-        (joystick.GetRawAxis(Joy0Const::kdrive_speed_axis) ,
-        (joystick.GetRawAxis(Joy0Const::kdrive_curvature_axis), isQuickTurn);
+        (joystick.GetRawAxis(Joy0Const::kdrive_speed_axis)) ,
+        (joystick.GetRawAxis(Joy0Const::kdrive_curvature_axis)), isQuickTurn);
       frc::SmartDashboard::PutBoolean("Reverse Drive", ReverseDrive);
     }
   } else {
