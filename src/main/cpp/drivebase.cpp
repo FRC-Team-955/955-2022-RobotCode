@@ -12,7 +12,7 @@ void DriveBase::Drive(photonlib::PhotonPipelineResult result) {
   if (ReverseDrive == false) {
     if (BallAimbot == true && ball_detector.BallDetectorX(result) < 10000) {
       m_robotDrive.CurvatureDrive(
-        (joystick.GetRawAxis(Joy0Const::kdrive_speed_axis),
+        (joystick.GetRawAxis(Joy0Const::kdrive_speed_axis)),
         (joystick.GetRawAxis(Joy0Const::kdrive_curvature_axis) + (ball_detector.BallDetectorX(result)/turndiv)), isQuickTurn);
       frc::SmartDashboard::PutBoolean("Reverse Drive", ReverseDrive);
     } else {
