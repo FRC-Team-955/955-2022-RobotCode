@@ -28,7 +28,7 @@ Auto * bryanauto;
 
 
 
-frc::Trajectory trajectory;
+frc::Trajectory set_trajectory;
 
 // std::string color[2] = { "Blue", "Red"};
 
@@ -44,15 +44,19 @@ void Robot::RobotInit() {
   std::cout<<"robotinti"<<std::endl;
   
   fs::path deployDirectory = frc::filesystem::GetDeployDirectory();
-  deployDirectory = deployDirectory / "Unnamed.wpilib.json";
-  trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory.string());
+  deployDirectory = deployDirectory / "paths" / "Unnamed.wpilib.json";
+  std::cout<<deployDirectory.string()<<std::endl;
+
+  set_trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory.string());
+  std::cout<<"trajc set in init"<<std::endl;
+
 
   //Add the options to the Choosers
   m_position_Chooser.AddOption("Left","Left");
   m_position_Chooser.AddOption("Right","Right");
   m_position_Chooser.AddOption("Middle","Middle");
   Shuffleboard::GetTab("Pre").Add("Robot Position", m_position_Chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
-  m_team_color_Chooser.AddOption("Red", "Blue");
+  m_team_color_Chooser.AddOption("Blue", "Blue");
   m_team_color_Chooser.AddOption("Red", "Red");
   Shuffleboard::GetTab("Pre").Add("Team Color", m_team_color_Chooser).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 
@@ -66,20 +70,27 @@ void Robot::AutonomousInit() {
   //Gets the values from the Shuffleboard
   std::string auto_selection = Shuffleboard::GetTab("Pre").Add("Robot Position", "NA").GetEntry().GetString("NA");
   //The team color it defaults to Red jic you forget to set color (aka hope to win 50-50)
-  ball_manager.team_color = Shuffleboard::GetTab("Pre").Add("Robot Position", "NA").GetEntry().GetString("Red");
+  // ball_manager.team_color = Shuffleboard::GetTab("Pre").Add("Robot Position", "NA").GetEntry().GetString("Red");
   
-  std::cout<<"autoinit"<<std::endl;
+  std::cout<<"autoinit1"<<std::endl;
 
 }
 
 void Robot::AutonomousPeriodic() {
+    std::cout<<"auto periodic"<<std::endl;
+
   if(state == 0){
-    bryanauto->SetTrajectory(trajectory);
+    std::cout<<"state =0"<<std::endl;
+
+    bryanauto->SetTrajectory(set_trajectory);
+    std::cout<<"settraj"<<std::endl;
+
     bryanauto-> Start();
     std::cout<<"start"<<std::endl;
     state = 1;
   }else if(state == 1){
     if(bryanauto -> RunRamsete()){
+      
       state = 2;
       std::cout<<"it run"<<std::endl;
     }

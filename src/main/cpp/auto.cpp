@@ -55,6 +55,7 @@ void Auto::GenerateTrajectory(){
 }
 
 void Auto::SetTrajectory(frc::Trajectory trajectory_input){
+    std::cout<<"uh in fun"<<std::endl;
     trajectory= trajectory_input;
 }
 
@@ -79,7 +80,7 @@ void Auto::SetTrajectory(frc::Trajectory trajectory_input){
 // }
 
 void Auto::Start(){
-    GenerateTrajectory();
+    //GenerateTrajectory();
     //Runs the Auto::Reset which well resets motor direction, encoders,and gyro
     Reset();
     //Starts the timer

@@ -1,5 +1,6 @@
 #ifndef AUTO
 #define AUTO
+#include <iostream>
 
 
 #include "rev/CANSparkMax.h"
