@@ -1,6 +1,6 @@
 #pragma once
-#include <units/units.h>
-
+#include <units/acceleration.h>
+#include <units/velocity.h>
 
 namespace Joy0Const {
 constexpr int kquick_turn_button = 1;
@@ -43,4 +43,5 @@ constexpr auto kA = 1.2494_V/1_mps_sq;
 //TrajectoryConfig values
 constexpr units::meters_per_second_t kmax_velocity = 2_mps;
 constexpr units::meters_per_second_squared_t kmax_acceleration = 2_mps_sq;
+constexpr units::second_t timerss= 2_s;
 }
