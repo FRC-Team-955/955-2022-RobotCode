@@ -11,6 +11,7 @@
 using namespace frc;
 
 DriveBase *drivebase;
+XYalign *xy_align;
 
 void Robot::RobotInit() {}
 void Robot::RobotPeriodic() {}
@@ -20,9 +21,14 @@ void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {
   drivebase = new DriveBase();
+  xy_align = new XYalign();
   frc::CameraServer::GetInstance()->StartAutomaticCapture();
 }
-void Robot::TeleopPeriodic() { drivebase->Drive(); }
+void Robot::TeleopPeriodic() { drivebase->Drive();
+  if(joystick.GetRawButton(Joy0Const::kquick_turn_button)){
+    xy_align->Align();
+  }
+ }
 
 void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
