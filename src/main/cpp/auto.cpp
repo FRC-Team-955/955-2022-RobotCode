@@ -1,13 +1,28 @@
 #include "auto.h"
+
+
 void Auto::Reset(){
+    std::cout<<"this is cringe0"<<std::endl;
+    std::cout<<"this is cringe"<<std::endl;
+
     m_leftFollowMotor.Follow(m_leftLeadMotor);
     m_rightFollowMotor.Follow(m_rightLeadMotor);
+    std::cout<<"this is cringe2"<<std::endl;
+
     m_leftLeadMotor.SetInverted(false);
     m_rightLeadMotor.SetInverted(true);
+    std::cout<<"this is cringe3"<<std::endl;
+
     m_leftLeadMotor.GetEncoder().SetPosition(0);
     m_rightLeadMotor.GetEncoder().SetPosition(0);
+    std::cout<<"this is cringe4"<<std::endl;
+
     gyro.Reset();
+    std::cout<<"this is cringe5"<<std::endl;
+
     config.SetKinematics(kinematics);
+    std::cout<<"this is cringe6"<<std::endl;
+
 }
 void Auto::ResetOdometry(const frc::Pose2d& pose) {
     //You need to run Reset before this as Encoders need to be reset
@@ -85,13 +100,20 @@ void Auto::SetTrajectory(frc::Trajectory trajectory_input){
 // }
 
 void Auto::Start(){
+    std::cout<<"uhh in start"<<std::endl;
+
     //GenerateTrajectory();
     //Runs the Auto::Reset which well resets motor direction, encoders,and gyro
-    Reset();
+    Auto::Reset();
+    std::cout<<"reset"<<std::endl;
     //Starts the timer
     m_timer->Start();
+    std::cout<<"start"<<std::endl;
+
     //resets the Odometry to the initial positions of the trajectory
     ResetOdometry(trajectory.InitialPose());
+    std::cout<<"resetod"<<std::endl;
+
 }
 
 bool Auto::RunRamsete(){

@@ -2,7 +2,6 @@
 #define AUTO
 #include <iostream>
 
-
 #include "rev/CANSparkMax.h"
 
 #include <frc/kinematics/DifferentialDriveKinematics.h>
@@ -24,6 +23,10 @@
 
 #include "AHRS.h"
 #include <math.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+
+#include <frc/shuffleboard/Shuffleboard.h>
+
 #include "settings.h"
 using namespace rev;
 

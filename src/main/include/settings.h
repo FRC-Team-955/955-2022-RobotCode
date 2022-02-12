@@ -1,6 +1,7 @@
 #pragma once
 #include <units/acceleration.h>
 #include <units/velocity.h>
+#include <units/voltage.h>
 
 namespace Joy0Const {
 constexpr int kquick_turn_button = 1;
