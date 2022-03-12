@@ -1,8 +1,9 @@
 #pragma once
 
 
-namespace Joy0Const {
-
+namespace JoyConst {
+const int forward_back_drivebase_axis_idx = 1;
+const int left_right_drivebase_axis_idx = 4;
 } 
 
 namespace Joy1Const {}
@@ -12,10 +13,10 @@ namespace SensorConst {
 }
 
 namespace DriveConst {
-constexpr int khopper_motor_right_lead_port = 0;
-constexpr int khopper_motor_left_lead_port = 1;
-constexpr int khopper_motor_right_follower_port = 2;
-constexpr int khopper_motor_left_follower_port = 3;
+constexpr int kright_lead_port = 3;
+constexpr int kleft_lead_port = 2;
+constexpr int kright_follower_port = 4;
+constexpr int kleft_follower_port = 1;
 }
 
 namespace MechanismConst {

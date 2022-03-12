@@ -5,17 +5,20 @@
 using namespace frc;
 #include "settings.h"
 #include <ctre/Phoenix.h>
+#include <frc/Joystick.h>
 
 class Omnidrive {
 public:
-  Omnidrive() {
-  }
+  Omnidrive (Joystick *joy, TalonSRX *leftLeadMotor, TalonSRX *rightLeadMotor, TalonSRX *leftFollowerMotor, TalonSRX *rightFollowerMotor) : joy(joy), leftLeadMotor(leftLeadMotor), rightLeadMotor(rightLeadMotor), leftFollowerMotor(leftFollowerMotor), rightFollowerMotor(rightFollowerMotor) {};
+  double right;
+  double left;
+  void Drive();
 private:
-  TalonSRX leftLeadMotor {MechanismConst::khopper_motor_left_lead_port};
-  TalonSRX rightLeadMotor {MechanismConst::khopper_motor_right_lead_port};
-  TalonSRX leftFollowerMotor {MechanismConst::khopper_motor_left_follower_port};  
-  TalonSRX rightFollowerMotor {MechanismConst::khopper_motor_right_follower_port};
-  DifferentialDrive differential_drive {leftLeadMotor, rightLeadMotor};
+  Joystick *joy;
+  TalonSRX *leftLeadMotor;
+  TalonSRX *rightLeadMotor;
+  TalonSRX *leftFollowerMotor;  
+  TalonSRX *rightFollowerMotor;
   
 };
 #endif
