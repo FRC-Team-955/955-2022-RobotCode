@@ -1,7 +1,7 @@
 #include "omnidrive.h"
 #include "settings.h"
 using namespace frc;
-
+//please work
 void Omnidrive::Drive(){
 	right = (joy->GetRawAxis(4) + joy->GetRawAxis(1));
 	left = (-joy->GetRawAxis(4) + joy->GetRawAxis(1));
